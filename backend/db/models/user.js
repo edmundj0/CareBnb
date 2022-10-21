@@ -9,14 +9,17 @@ module.exports = (sequelize, DataTypes) => {
       return { id, username, email };
     }
 
+    //accept pw and return true if matches User instance's hashedPW
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
 
+    //use currentUser scope to return User with that id
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
 
+    //search for user, and return user if pw is valid
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
@@ -32,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
+    //hash pw with bcryptjs, create User
     static async signup({ username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
