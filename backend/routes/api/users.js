@@ -9,6 +9,12 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const validateSignup = [
+  check('firstName')
+    .exists({ checkFalsy: true})
+    .withMessage('First Name is required'),
+  check('lastName')
+    .exists({ checkFalsy: true})
+    .withMessage('Last Name is required'),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
@@ -25,12 +31,6 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
-  check('firstName')
-    .exists({ checkFalsy: true})
-    .withMessage('First Name is required'),
-  check('lastName')
-    .exists({ checkFalsy: true})
-    .withMessage('Last Name is required'),
   handleValidationErrors
 ];
 
@@ -39,8 +39,8 @@ router.post(
   '/',
   validateSignup,
   async (req, res) => {
-    const { email, password, username, firstName, lastName } = req.body;
-    const user = await User.signup({ email, username, password, firstName, lastName});
+    const { firstName, lastName, email, password, username } = req.body;
+    const user = await User.signup({ firstName, lastName, email, username, password });
 
     await setTokenCookie(res, user);
 
