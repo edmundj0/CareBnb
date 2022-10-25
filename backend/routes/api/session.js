@@ -39,7 +39,12 @@ router.post(
     await setTokenCookie(res, user);
 
     return res.json({
-      user
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+      token: ""
     });
   }
 );
@@ -71,7 +76,17 @@ router.get(
         email: user.email,
         username: user.username
       })
-    } else return res.json({});
+    } else{
+      // const err = new Error('Authentication Required')
+      // err.status = 401
+      // err.title = 'Authentication Required'
+
+      // throw err
+      res.status(401).json({
+        message: 'Authentication Required',
+        statusCode: '401'
+      })
+    }
   }
 );
 
