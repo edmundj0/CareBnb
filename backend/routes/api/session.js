@@ -63,7 +63,7 @@ router.delete(
 router.get(
   '/',
   restoreUser,
-  (req, res) => {
+  (req, res, next) => {
     const { user } = req;
     if (user) {
       // return res.json({
@@ -77,15 +77,18 @@ router.get(
         username: user.username
       })
     } else{
-      // const err = new Error('Authentication Required')
-      // err.status = 401
-      // err.title = 'Authentication Required'
+      const err = new Error('Authentication Required')
+      err.status = 401
+      next(err)
+      // res.json({
+      //   message: err.message,
+      //   statusCode: err.status
+      // })
 
-      // throw err
-      res.status(401).json({
-        message: 'Authentication Required',
-        statusCode: '401'
-      })
+      // res.status(401).json({
+      //   message: 'Authentication Required',
+      //   statusCode: '401'
+      // })
     }
   }
 );
