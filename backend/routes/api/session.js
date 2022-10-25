@@ -39,7 +39,12 @@ router.post(
     await setTokenCookie(res, user);
 
     return res.json({
-      user
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+      token: ""
     });
   }
 );
@@ -58,13 +63,33 @@ router.delete(
 router.get(
   '/',
   restoreUser,
-  (req, res) => {
+  (req, res, next) => {
     const { user } = req;
     if (user) {
+      // return res.json({
+      //   user: user.toSafeObject()
+      // });
       return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username
+      })
+    } else{
+      const err = new Error('Authentication Required')
+      err.status = 401
+      next(err)
+      // res.json({
+      //   message: err.message,
+      //   statusCode: err.status
+      // })
+
+      // res.status(401).json({
+      //   message: 'Authentication Required',
+      //   statusCode: '401'
+      // })
+    }
   }
 );
 
