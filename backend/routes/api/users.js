@@ -44,6 +44,12 @@ router.post(
 
     await setTokenCookie(res, user);
 
+    delete user.dataValues.updatedAt
+    delete user.dataValues.createdAt
+    user.dataValues.token = ""
+
+    console.log(user)
+
     return res.json({
       user,
     });
