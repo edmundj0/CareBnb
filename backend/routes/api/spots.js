@@ -48,6 +48,6 @@ router.get('/current', requireAuth, async (req, res) => {
     })
 
 
-
+console.log('test')
 
     module.exports = router;
