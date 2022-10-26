@@ -38,7 +38,7 @@ router.get('/current', requireAuth, async (req, res) => {
             include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
                 "avgRating"], [sequelize.col('SpotImages.url'), 'previewImage']]
         },
-        group: ['Spot.id', [sequelize.col('SpotImages.url'), 'previewImage']]
+        group: ['Spot.id', 'SpotImages.url']
 
         })
 
