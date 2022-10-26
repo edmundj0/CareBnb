@@ -21,8 +21,6 @@ router.get('/', async (req, res) => {
         group: ['Spot.id', 'SpotImages.url']
     })
 
-    console.log(allSpots)
-
     return res.json({
         Spots: allSpots
     })
@@ -31,12 +29,25 @@ router.get('/', async (req, res) => {
 //GET All Spots owned by the Current User (require auth - true)
 router.get('/current', requireAuth, async (req, res) => {
 
+    const { user } = req;
+
     const currentUserSpots = await Spot.findAll({
+        where: { ownerId: user.id },
+        include: [{ model: Review, attributes: [] }, { model: SpotImage, attributes: [] }],
+        attributes: {
+            include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
+                "avgRating"], [sequelize.col('SpotImages.url'), 'previewImage']]
+        },
+        group: ['Spot.id', [sequelize.col('SpotImages.url'), 'previewImage']]
+
+        })
+
+        return res.json({
+            Spots: currentUserSpots
+        })
     })
-    console.log(req, '**************test')
-})
 
 
 
 
-module.exports = router;
+    module.exports = router;
