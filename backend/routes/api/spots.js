@@ -196,4 +196,35 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 })
 
 
+
+//Edit a Spot (require auth - true)
+
+const checkSpotAndOwnership = async (req, res, next) => {
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if(!spot || req.user.id !== spot.ownerId){
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: "404"
+        })
+    }
+    return next()
+}
+
+router.put('/:spotId', requireAuth, checkSpotAndOwnership, validateNewSpot, async (req, res) => {
+
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    const { address, city, state, country, lat, lng, name, description, price} = req.body
+
+    spot = await spot.update({
+        address, city, state, country, lat, lng, name, description, price
+    })
+
+    res.status(200).json(spot)
+
+})
+
+
 module.exports = router;
