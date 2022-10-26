@@ -22,6 +22,10 @@ module.exports = {
       url: "test-2"
     },
     {
+      reviewId: 2,
+      url: "test-22"
+    },
+    {
       reviewId: 3,
       url: "test-3"
     }
@@ -38,7 +42,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('ReviewImages', {
-      reviewId: { [Op.in]: ["test-1", "test-2", "test-3"]}
+      reviewId: { [Op.in]: ["test-1", "test-2", "test-22", "test-3"]}
     })
   }
 };
