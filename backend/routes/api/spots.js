@@ -13,10 +13,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 //GET All Spots - return all the spots (require auth - false)
 router.get('/', async (req, res) => {
     const allSpots = await Spot.findAll({
-        include: [{ model: Review, attributes: [] }, {model: SpotImage, attributes: []}],
-        attributes: {include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
-        "avgRating"], [sequelize.col('SpotImages.url'), 'previewImage']]},
-        group: 'Spot.id'
+        include: [{ model: Review, attributes: [] }, { model: SpotImage, attributes: [] }],
+        attributes: {
+            include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
+                "avgRating"], [sequelize.col('SpotImages.url'), 'previewImage']]
+        },
+        group: ['Spot.id', 'SpotImages.url']
     })
 
     console.log(allSpots)
