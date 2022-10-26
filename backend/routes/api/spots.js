@@ -75,7 +75,7 @@ router.get('/:spotId', async (req, res) => {
 
     if (!spot) res.status(404).json({
         message: "Spot couldn't be found",
-        statusCode: "404"
+        statusCode: 404
     })
 
     spot = spot.toJSON()
@@ -177,7 +177,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     if(!spot || req.user.id !== spot.ownerId){
         return res.status(404).json({
             message: "Spot couldn't be found",
-            statusCode: "404"
+            statusCode: 404
         })
     }
 
@@ -206,7 +206,7 @@ const checkSpotAndOwnership = async (req, res, next) => {
     if(!spot || req.user.id !== spot.ownerId){
         return res.status(404).json({
             message: "Spot couldn't be found",
-            statusCode: "404"
+            statusCode: 404
         })
     }
     return next()
@@ -225,6 +225,22 @@ router.put('/:spotId', requireAuth, checkSpotAndOwnership, validateNewSpot, asyn
     res.status(200).json(spot)
 
 })
+
+
+//DELETE a Spot (require auth -true)
+
+router.delete('/:spotId', requireAuth, checkSpotAndOwnership, async(req, res) => {
+
+    const deleteSpot = await Spot.findByPk(req.params.spotId)
+
+    await deleteSpot.destroy();
+
+    return res.status(200).json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+})
+
 
 
 module.exports = router;
