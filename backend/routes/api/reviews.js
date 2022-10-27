@@ -43,7 +43,7 @@ router.get('/current', requireAuth, async (req, res) => {
         //returnArr.push(eachReview)
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         // Reviews: returnArr
         Reviews: currentUserReviews
     })
@@ -125,10 +125,38 @@ router.put('/:reviewId', requireAuth, validateNewReview, async (req, res) => {
         stars
     })
 
-    res.status(200).json(reviewToEdit)
+    return res.status(200).json(reviewToEdit)
 
 })
 
+
+//DELETE a Review
+
+router.delete('/:reviewId', requireAuth, async(req, res) => {
+
+    const deleteReview = await Review.findByPk(req.params.reviewId)
+
+    if(!deleteReview){
+        return res.status(404).json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(deleteReview.userId !== req.user.id) {
+        return res.status(403).json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+
+    await deleteReview.destroy();
+
+    return res.status(200).json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+})
 
 
 module.exports = router;

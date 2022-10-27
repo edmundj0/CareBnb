@@ -74,7 +74,7 @@ router.get('/:spotId', async (req, res) => {
             // }, where: {'Reviews.spotId' : spotId}
         })
 
-    if (!spot) res.status(404).json({
+    if (!spot) return res.status(404).json({
         message: "Spot couldn't be found",
         statusCode: 404
     })
@@ -158,7 +158,7 @@ router.put('/:spotId', requireAuth, checkSpotAndOwnership, validateNewSpot, asyn
         address, city, state, country, lat, lng, name, description, price
     })
 
-    res.status(200).json(spot)
+    return res.status(200).json(spot)
 
 })
 
