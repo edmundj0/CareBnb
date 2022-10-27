@@ -82,8 +82,11 @@ const validateNewReview = [
         .exists({ checkFalsy: true})
         .withMessage('Stars must be an integer from 1 to 5')
         .isIn([1,2,3,4,5])
-        .withMessage('Stars must be an integer from 1 to 5')
+        .withMessage('Stars must be an integer from 1 to 5'),
+    checkValidation
 ]
+
+
 
 
 module.exports = {checkValidation, validateNewSpot, checkSpotAndOwnership, validateNewReview}
