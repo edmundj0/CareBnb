@@ -14,7 +14,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
     const { user } = req;
 
-    const currentUserReviews = await Review.findAll({
+    let currentUserReviews = await Review.findAll({
         where: { userId: user.id},
         include: [
             {model: User, attributes: ['id', 'firstName', 'lastName']},
@@ -23,30 +23,59 @@ router.get('/current', requireAuth, async (req, res) => {
         ]
     })
 
-    let returnArr = [];
-    for (let eachReview of currentUserReviews){
-        eachReview = eachReview.toJSON()
-
-        console.log(eachReview.Spot, '*********')
+    //let returnArr = [];
+    // for (let eachReview of currentUserReviews){
+        for(let i=0; i < currentUserReviews.length; i++){
+            //eachReview = eachReview.toJSON()
+        currentUserReviews[i] = currentUserReviews[i].toJSON()
 
         let previewImg = await SpotImage.findOne({
             where: {
-                spotId: eachReview.Spot.id,
+                spotId: currentUserReviews[i].Spot.id,
                 preview: true
             }
         })
 
-        eachReview.Spot.previewImage = previewImg.url;
+        currentUserReviews[i].Spot.previewImage = previewImg.url;
 
-        returnArr.push(eachReview)
+        //returnArr.push(eachReview)
     }
 
-    res.json({
-        Reviews: returnArr
+    res.status(200).json({
+       // Reviews: returnArr
+       Reviews: currentUserReviews
     })
 })
 
+// GET all Reviews by a Spot's id (require authentication - false)
 
+router.get('/:spotId/reviews', async (req, res) => {
+
+    const {spotId} = req.params;
+
+    let spot = await Spot.findByPk(spotId)
+
+    if(!spot){
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    let reviews = await Review.findAll({
+        where: {spotId: spotId},
+        include: [
+            {model: User, attributes: ["id", "firstName", "lastName"]},
+            {model: ReviewImage, attributes: ["id", "url"]}
+        ]
+    })
+
+    return res.status(200).json({
+        Reviews: reviews
+    })
+
+
+})
 
 
 
