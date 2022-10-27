@@ -38,7 +38,12 @@ router.get('/current', requireAuth, async (req, res) => {
             }
         })
 
-        currentUserReviews[i].Spot.previewImage = previewImg.url;
+
+        if (!previewImg) {
+            currentUserReviews[i].Spot.previewImage = null
+        } else {
+            currentUserReviews[i].Spot.previewImage = previewImg.url
+        }
 
         //returnArr.push(eachReview)
     }
@@ -132,18 +137,18 @@ router.put('/:reviewId', requireAuth, validateNewReview, async (req, res) => {
 
 //DELETE a Review
 
-router.delete('/:reviewId', requireAuth, async(req, res) => {
+router.delete('/:reviewId', requireAuth, async (req, res) => {
 
     const deleteReview = await Review.findByPk(req.params.reviewId)
 
-    if(!deleteReview){
+    if (!deleteReview) {
         return res.status(404).json({
             message: "Review couldn't be found",
             statusCode: 404
         })
     }
 
-    if(deleteReview.userId !== req.user.id) {
+    if (deleteReview.userId !== req.user.id) {
         return res.status(403).json({
             message: "Forbidden",
             statusCode: 403
