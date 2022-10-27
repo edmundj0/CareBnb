@@ -8,6 +8,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+
 // Get all Reviews of the Current User (require auth - true)
 
 router.get('/current', requireAuth, async (req, res) => {
