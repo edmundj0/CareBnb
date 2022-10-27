@@ -228,8 +228,6 @@ router.post('/:spotId/reviews', requireAuth, validateNewReview, async (req, res)
         }
     })
 
-    console.log(checkExistingReview)
-
     if(checkExistingReview){
         return res.status(403).json({
             message: "User already has a review for this spot",
@@ -248,10 +246,10 @@ router.post('/:spotId/reviews', requireAuth, validateNewReview, async (req, res)
 
     return res.status(201).json(newReview)
 
-
-
-
 })
+
+
+
 
 
 
