@@ -104,8 +104,6 @@ const checkValidation = (req, res, next) => {
 
     if (!validationErrors.isEmpty()) {
 
-        console.log(validationErrors)
-
         let returnErrObj = {}
         for (let err of validationErrors.errors) {
             returnErrObj[err.param] = err.msg
