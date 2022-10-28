@@ -337,7 +337,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     for (let ele of existingBookings) {
         let existingStartDate = new Date(ele.startDate)
         let existingEndDate = new Date(ele.endDate)
-        console.log(existingEndDate, 'asdfasdf')
 
         if (newEndDate >= existingStartDate && newEndDate <= existingEndDate && newStartDate >= existingStartDate && newStartDate <= existingEndDate) {
             return res.status(403).json({
