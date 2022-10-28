@@ -68,9 +68,9 @@ router.post(
 
     console.log(user)
 
-    return res.json({
-      user,
-    });
+    return res.json(
+      user
+    );
   }
 );
 
