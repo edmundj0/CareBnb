@@ -13,19 +13,58 @@ const { checkValidation, validateNewSpot, checkSpotAndOwnership, validateNewRevi
 
 //GET All Spots - return all the spots (require auth - false)
 router.get('/', async (req, res) => {
+
+
+    let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query;
+
+    //default values
+    if(!page) page = 1;
+    if(!size) size = 20;
+
+
+    const returnErrors = {
+        message: "Validation Error",
+        statusCode: 400,
+        errors: {}
+    }
+
+    if(page < 1) returnErrors.errors.page = 'Page must be greater than or equal to 1'
+    if(size < 1) returnErrors.errors.size = 'Size must be greater than or equal to 1'
+
+    if(page > 10) returnErrors.errors.maxPage = 'Page must be less than or equal to 10'
+    if(size > 20) returnErrors.errors.maxSize = 'Size must be less than or equal to 20'
+
+    if(Number.isNaN(page) || Number.isNaN(size)) returnErrors.errors.pageOrNumber = 'Page and number must be integers'
+
+    if(Object.keys(returnErrors.errors).length !== 0){
+        return res.status(400).json(returnErrors)
+    }
+
+    page = +page;
+    size = +size;
+
+    let limit = size;
+    let offset = size * (page - 1)
+
+
     const allSpots = await Spot.findAll({
-        include: [{ model: Review, attributes: [] }, { model: SpotImage, attributes: [], where: { preview: true }, required: false }],
+        include: [{ model: Review, attributes: [], required: false }, { model: SpotImage, attributes: [], where: { preview: true }, required: false }],
         attributes: {
             include: [
                 [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
                 [sequelize.col('SpotImages.url'), 'previewImage']
             ]
         },
-        group: ['Spot.id', 'SpotImages.url']
+        group: ['Spot.id', 'SpotImages.url'],
+        limit: limit,
+        offset: offset,
+        subQuery: false
     })
 
     return res.status(200).json({
-        Spots: allSpots
+        Spots: allSpots,
+        page: page,
+        size: size
     })
 })
 
@@ -36,7 +75,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
     const currentUserSpots = await Spot.findAll({
         where: { ownerId: user.id },
-        include: [{ model: Review, attributes: [] }, { model: SpotImage, attributes: [] }],
+        include: [{ model: Review, attributes: [] }, { model: SpotImage, attributes: [], where: {preview: true}, required: false }],
         attributes: {
             include: [
                 [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
@@ -63,7 +102,7 @@ router.get('/:spotId', async (req, res) => {
 
             include: [
                 { model: Review, attributes: ["id", "stars"] },
-                { model: SpotImage, attributes: ["id", "url", "preview"] },
+                { model: SpotImage, attributes: ["id", "url", "preview"], required: false },
                 { model: User, as: 'Owner', attributes: ["id", "firstName", "lastName"] }
             ],
 
