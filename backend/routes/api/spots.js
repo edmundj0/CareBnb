@@ -121,10 +121,17 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 
     //if no spot exists or if owner doesn't own the spot, 404 error
-    if (!spot || req.user.id !== spot.ownerId) {
+    if (!spot) {
         return res.status(404).json({
             message: "Spot couldn't be found",
             statusCode: 404
+        })
+    }
+
+    if(req.user.id !== spot.ownerId){
+        return res.status(403).json({
+            message: "Forbidden",
+            statusCode: 403
         })
     }
 
