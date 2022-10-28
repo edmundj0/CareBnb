@@ -1,7 +1,8 @@
 const express = require('express');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth')
-const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize } = require('../../db/models')
+const {Op} = require('sequelize')
+const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize, Sequelize } = require('../../db/models')
 
 const router = express.Router();
 
@@ -11,15 +12,13 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { checkValidation, validateNewSpot, checkSpotAndOwnership, validateNewReview } = require('./validations')
 
 
+
+
 //GET All Spots - return all the spots (require auth - false)
 router.get('/', async (req, res) => {
 
 
     let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query;
-
-    //default values
-    if(!page) page = 1;
-    if(!size) size = 20;
 
 
     const returnErrors = {
@@ -27,6 +26,12 @@ router.get('/', async (req, res) => {
         statusCode: 400,
         errors: {}
     }
+
+    if(!size) size = 20;
+    if(!page) page = 1;
+
+    page = parseInt(page);
+    size = parseInt(size);
 
     if(page < 1) returnErrors.errors.page = 'Page must be greater than or equal to 1'
     if(size < 1) returnErrors.errors.size = 'Size must be greater than or equal to 1'
@@ -40,32 +45,78 @@ router.get('/', async (req, res) => {
         return res.status(400).json(returnErrors)
     }
 
-    page = +page;
-    size = +size;
 
-    let limit = size;
-    let offset = size * (page - 1)
+    const limit = size;
+    const offset = size * (page - 1)
 
-
-    const allSpots = await Spot.findAll({
-        include: [{ model: Review, attributes: [], required: false }, { model: SpotImage, attributes: [], where: { preview: true }, required: false }],
-        attributes: {
-            include: [
-                [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
-                [sequelize.col('SpotImages.url'), 'previewImage']
-            ]
-        },
-        group: ['Spot.id', 'SpotImages.url'],
-        limit: limit,
-        offset: offset,
-        subQuery: false
+    let paginateSpots = await Spot.findAll({
+        limit,
+        offset
     })
+
+    let allSpots = [];
+
+    for(let i=0; i < paginateSpots.length; i++){
+
+        let eachSpot = paginateSpots[i].toJSON()
+
+        console.log(eachSpot)
+
+        let avgRating = await Review.findAll({
+            raw: true,
+            where: {spotId: paginateSpots[i].id},
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+        })
+
+        let previewImage = await SpotImage.findAll({
+            raw: true,
+            where: { spotId: paginateSpots[i].id},
+            attributes: ['url']
+        })
+
+        if(avgRating[0]){
+            eachSpot.avgRating = avgRating[0].avgRating
+        }else{
+            eachSpot.avgRating = null
+        }
+
+        if(previewImage[0]){
+            eachSpot.previewImage = previewImage[0].url
+        }else{
+            eachSpot.previewImage = null
+        }
+
+        allSpots.push(eachSpot)
+
+    }
 
     return res.status(200).json({
         Spots: allSpots,
-        page: page,
-        size: size
+        page,
+        size
     })
+
+
+    // const allSpots = await Spot.findAll({
+    //     include: [{ model: Review, attributes: [], required: false }, { model: SpotImage, attributes: [], where: { preview: true }, required: false }],
+    //     attributes: {
+    //         include: [
+    //             [Sequelize.fn("AVG", Sequelize.col("Reviews.stars")), "avgRating"],
+    //             [Sequelize.col('SpotImages.url'), 'previewImage']
+    //         ]
+    //     },
+    //     group: ['Spot.id', 'SpotImages.url'],
+    //     limit:3,
+    //     offset:0,
+    //     subQuery: false,
+    // })
+
+
+    // return res.status(200).json({
+    //     Spots: allSpots,
+    //     // page,
+    //     // size
+    // })
 })
 
 //GET All Spots owned by the Current User (require auth - true)
