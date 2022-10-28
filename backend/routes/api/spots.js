@@ -403,7 +403,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         })
     }
 
-    if (req.user.id === spot.ownerId) {
+    if (req.user.id == spot.ownerId) {
         return res.status(403).json({
             message: "Forbidden, can't book your own spot",
             statusCode: 403
