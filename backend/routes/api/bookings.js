@@ -162,7 +162,6 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     const { bookingId } = req.params
 
     const booking = await Booking.findByPk(bookingId)
-    const spot = await Spot.findByPk(booking.spotId)
 
     if (!booking) {
         return res.status(404).json({
@@ -170,6 +169,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
             statusCode: 404
         })
     }
+    const spot = await Spot.findByPk(booking.spotId)
 
     if (booking.userId !== req.user.id && spot.ownerId != req.user.id) {
         return res.status(403).json({
