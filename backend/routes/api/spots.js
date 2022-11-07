@@ -29,11 +29,60 @@ router.get('/', async (req, res) => {
 
     if(page < 1) returnErrors.errors.page = 'Page must be greater than or equal to 1'
     if(size < 1) returnErrors.errors.size = 'Size must be greater than or equal to 1'
-
     if(page > 10) returnErrors.errors.maxPage = 'Page must be less than or equal to 10'
     if(size > 20) returnErrors.errors.maxSize = 'Size must be less than or equal to 20'
-
     if(Number.isNaN(page) || Number.isNaN(size)) returnErrors.errors.pageOrNumber = 'Page and number must be integers'
+
+    //query parameters
+
+    const whereObj = {};
+    if(minLat){
+        minLat = parseFloat(minLat);
+        if (minLat >= -90) whereObj.lat = {[Op.gte]: minLat};
+        else returnErrors.errors.minLat = "Minimum latitude is invalid"
+    }
+    if(maxLat){
+        maxLat = parseFloat(maxLat);
+        if (maxLat <= 90) whereObj.lat = {[Op.lte]: maxLat};
+        else returnErrors.errors.maxLat = "Maximum latitude is invalid"
+    }
+    if(minLng){
+        minLng = parseFloat(minLng);
+        if (minLng >= -180) whereObj.lng = {[Op.gte]: minLng};
+        else returnErrors.errors.minLng = "Minimum longitude is invalid"
+    }
+    if(maxLng){
+        maxLng = parseFloat(maxLng);
+        if (maxLng <= 180) whereObj.lng = {[Op.lte]: maxLng};
+        else returnErrors.errors.maxLng = "Maximum longitude is invalid"
+    }
+    if(minPrice){
+        minPrice = parseFloat(minPrice);
+        if (minPrice >= 0) whereObj.price = {[Op.gte]: minPrice};
+        else returnErrors.errors.minPrice = "Minimum price must be greater than or equal to 0"
+    }
+    if(maxPrice){
+        maxPrice = parseFloat(maxPrice);
+        if (maxPrice >= 0) whereObj.price = {[Op.lte]: maxPrice};
+        else returnErrors.errors.maxPrice = "Maximum price must be greater than or equal to 0"
+    }
+
+    //conditions for both mins and max
+    if(minLat && maxLat){
+        if(minLat >= -90 && maxLat <= 90) whereObj.lat = {[Op.between]: [minLat, maxLat]};
+    }
+    if(minLng && maxLng){
+        if(minLng >= -180 && maxLng <= 180) whereObj.lng = {[Op.between]: [minLng, maxLng]};
+    }
+    if(minPrice && maxPrice){
+        if(minPrice >= 0 && maxPrice >= 0) whereObj.price = {[Op.between]: [minPrice, maxPrice]};
+    }
+
+
+    if(Number.isNaN(minLat) || Number.isNaN(maxLat) || Number.isNaN(minLng) || Number.isNaN(maxLng) || Number.isNaN(minPrice) || Number.isNaN(maxPrice)){
+        returnErrors.errors.queryParameters = "Query parameters must be numbers"
+    }
+
 
     if(Object.keys(returnErrors.errors).length !== 0){
         return res.status(400).json(returnErrors)
@@ -43,7 +92,10 @@ router.get('/', async (req, res) => {
     const limit = size;
     const offset = size * (page - 1)
 
+    console.log(whereObj, 'whereObj')
+
     let paginateSpots = await Spot.findAll({
+        where: whereObj,
         limit,
         offset
     })
