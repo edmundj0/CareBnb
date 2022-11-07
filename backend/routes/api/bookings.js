@@ -1,13 +1,9 @@
 const express = require('express');
 
 const { requireAuth } = require('../../utils/auth')
-const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize } = require('../../db/models')
+const { Spot, SpotImage, Booking } = require('../../db/models')
 
 const router = express.Router();
-
-const { check, validationResult } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-const { validateNewReview } = require('./validations');
 
 
 //GET all of the Current User's Bookings
@@ -22,8 +18,6 @@ router.get('/current', requireAuth, async (req, res) => {
             { model: Spot, attributes: { exclude: ['createdAt', 'updatedAt', 'description'] } }
         ]
     })
-
-    console.log(currentBookings)
 
     for (let i = 0; i < currentBookings.length; i++) {
         currentBookings[i] = currentBookings[i].toJSON()
@@ -147,8 +141,8 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
 
    const updatedRecord = await booking.update({
-        startDate: startDate,
-        endDate: endDate
+        startDate,
+        endDate
    })
 
     return res.status(200).json(updatedRecord)
@@ -194,13 +188,6 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     })
 
 })
-
-
-
-
-
-
-
 
 
 module.exports = router;

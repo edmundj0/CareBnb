@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { setTokenCookie } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
@@ -65,8 +65,6 @@ router.post(
     delete user.dataValues.updatedAt
     delete user.dataValues.createdAt
     user.dataValues.token = ""
-
-    console.log(user)
 
     return res.json(
       user

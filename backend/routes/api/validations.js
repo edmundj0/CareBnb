@@ -2,11 +2,7 @@ const express = require('express')
 
 const { check, validationResult } = require('express-validator');
 
-const { handleValidationErrors } = require('../../utils/validation');
-
-const { Spot, User, Review, SpotImage, ReviewImage, sequelize } = require('../../db/models');
-
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { Spot } = require('../../db/models');
 
 
 const checkValidation = (req, res, next) => {

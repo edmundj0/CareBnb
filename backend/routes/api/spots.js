@@ -1,18 +1,12 @@
 const express = require('express');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth')
+const { requireAuth } = require('../../utils/auth')
 const {Op} = require('sequelize')
 const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize, Sequelize } = require('../../db/models')
 
 const router = express.Router();
 
-const { check, validationResult } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-
-const { checkValidation, validateNewSpot, checkSpotAndOwnership, validateNewReview } = require('./validations')
-
-
-
+const { validateNewSpot, checkSpotAndOwnership, validateNewReview } = require('./validations')
 
 //GET All Spots - return all the spots (require auth - false)
 router.get('/', async (req, res) => {
@@ -59,8 +53,6 @@ router.get('/', async (req, res) => {
     for(let i=0; i < paginateSpots.length; i++){
 
         let eachSpot = paginateSpots[i].toJSON()
-
-        console.log(eachSpot)
 
         let avgRating = await Review.findAll({
             raw: true,
@@ -336,9 +328,9 @@ router.post('/:spotId/reviews', requireAuth, validateNewReview, async (req, res)
 
     const newReview = await Review.create({
         userId: req.user.id,
-        spotId: spotId,
-        review: review,
-        stars: stars
+        spotId,
+        review,
+        stars
     })
 
     return res.status(201).json(newReview)
@@ -476,9 +468,9 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
     const newBooking = await Booking.create({
         userId: req.user.id,
-        spotId: spotId,
-        startDate: startDate,
-        endDate: endDate
+        spotId,
+        startDate,
+        endDate
     })
 
     return res.status(200).json(newBooking)

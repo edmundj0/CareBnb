@@ -1,14 +1,9 @@
 const express = require('express');
 
 const { requireAuth } = require('../../utils/auth')
-const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize } = require('../../db/models')
+const { Review, ReviewImage } = require('../../db/models')
 
 const router = express.Router();
-
-const { check, validationResult } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-const { validateNewReview } = require('./validations');
-
 
 //Delete a Review Image
 router.delete('/:imageId', requireAuth, async (req, res) => {
@@ -40,9 +35,6 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         statusCode: 200
     })
 })
-
-
-
 
 
 
