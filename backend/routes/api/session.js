@@ -85,11 +85,13 @@ router.get(
         })
     } else {
 
-      // return res.json(null)
+      return res.json({
+        user: null
+      })
 
-      const err = new Error('Authentication Required')
-      err.status = 401
-      next(err)
+      // const err = new Error('Authentication Required')
+      // err.status = 401
+      // next(err)
     }
     // res.json({
     //   message: err.message,
