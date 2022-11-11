@@ -92,8 +92,6 @@ router.get('/', async (req, res) => {
     const limit = size;
     const offset = size * (page - 1)
 
-    console.log(whereObj, 'whereObj')
-
     let paginateSpots = await Spot.findAll({
         where: whereObj,
         limit,
