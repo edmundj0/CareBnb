@@ -10,10 +10,10 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const validateSignup = [
   check('firstName')
-    .exists({ checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('First Name is required'),
   check('lastName')
-    .exists({ checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('Last Name is required'),
   check('email')
     .exists({ checkFalsy: true })
@@ -41,19 +41,19 @@ router.post(
   async (req, res, next) => {
     const { firstName, lastName, email, password, username } = req.body;
 
-    const isEmail = await User.findOne({ where: { email }});
+    const isEmail = await User.findOne({ where: { email } });
 
-    if(isEmail){
+    if (isEmail) {
       let err = Error("User already exists")
-      err.errors = { email: "User with that email already exists"}
+      err.errors = { email: "User with that email already exists" }
       err.status = 403;
       return next(err)
     }
 
-    const isUserName = await User.findOne({where: { username }});
-    if(isUserName){
+    const isUserName = await User.findOne({ where: { username } });
+    if (isUserName) {
       let err = Error("User already exists")
-      err.errors = { username: "User with that username already exists"}
+      err.errors = { username: "User with that username already exists" }
       err.status = 403;
       return next(err)
     }
@@ -66,8 +66,9 @@ router.post(
     delete user.dataValues.createdAt
     user.dataValues.token = ""
 
-    return res.json(
+    return res.json({
       user
+    }
     );
   }
 );

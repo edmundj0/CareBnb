@@ -38,14 +38,18 @@ router.post(
 
     await setTokenCookie(res, user);
 
-    return res.json({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      username: user.username,
-      token: ""
-    });
+    return res.json(
+      {
+        user:
+        {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username,
+          token: ""
+        }
+      });
   }
 );
 
@@ -69,14 +73,17 @@ router.get(
       // return res.json({
       //   user: user.toSafeObject()
       // });
-      return res.json({
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username
-      })
-    } else{
+      return res.json(
+        {
+          user: {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username
+          }
+        })
+    } else {
 
       // return res.json(null)
 
@@ -84,15 +91,15 @@ router.get(
       err.status = 401
       next(err)
     }
-      // res.json({
-      //   message: err.message,
-      //   statusCode: err.status
-      // })
+    // res.json({
+    //   message: err.message,
+    //   statusCode: err.status
+    // })
 
-      // res.status(401).json({
-      //   message: 'Authentication Required',
-      //   statusCode: '401'
-      // })
+    // res.status(401).json({
+    //   message: 'Authentication Required',
+    //   statusCode: '401'
+    // })
     // }
   }
 );
