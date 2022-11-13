@@ -13,6 +13,10 @@ module.exports = {
      * }], {});
     */
      return queryInterface.bulkInsert('SpotImages', [
+      // to display drive photos, change
+      // https://drive.google.com/file/d/[image_id]/view?usp=sharing
+      // to
+      // https://drive.google.com/uc?export=view&id=[image_id]
       {
         spotId: 1,
         url: "test-1",
@@ -31,6 +35,11 @@ module.exports = {
       {
         spotId: 2,
         url: "test-3",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: "https://drive.google.com/uc?export=view&id=1Xqj2cX6QVYcG4BAjNGoOhojrA39tPNtA",
         preview: true
       }
      ])
