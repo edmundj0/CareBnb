@@ -19,12 +19,14 @@ export default function HomePage() {
             <div className='all-spots-total-container'>
                 {Object.values(allSpotsRes).map((spot) => {
                     return (
-                        <NavLink to={`spots/${spot.id}`}>
                          <div className='spot-outer-container' key={`spot ${spot.id}`}>
-                        <img src={spot.previewImage} alt="preview" className="spot-image"></img>
+                        <NavLink to={`spots/${spot.id}`}>
+                            <div className='spot-container'>
+                        <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
                             {spot.name}
-                        </div>
+                            </div>
                             </NavLink>
+                        </div>
                     )
                 })}
             </div>

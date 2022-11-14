@@ -41,6 +41,26 @@ module.exports = {
         spotId: 4,
         url: "https://drive.google.com/uc?export=view&id=1Xqj2cX6QVYcG4BAjNGoOhojrA39tPNtA",
         preview: true
+      },
+      {
+        spotId: 4,
+        url: "https://drive.google.com/uc?export=view&id=1Ge3161xMrt75TYYcSa9KuBEh77fvnSXm",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://drive.google.com/uc?export=view&id=1R3FHtY89OwoML9rG5lgR6YUDBqe-YAWl",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://drive.google.com/uc?export=view&id=1oRv6TlJmDzw4Ul1MSb-c6TGE_UGY85qU",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://drive.google.com/uc?export=view&id=1c7-NotvN4UgBHQjFanLp2S7dbLmIcEVH",
+        preview: false
       }
      ])
 

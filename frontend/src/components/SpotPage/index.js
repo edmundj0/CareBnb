@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
+import './SpotPage.css'
 
 export default function SpotPage() {
     const { spotId } = useParams()
@@ -13,35 +14,42 @@ export default function SpotPage() {
         dispatch(getOneSpot(spotId))
     }, [dispatch])
 
-    console.log(spotId)
 
-    if(!oneSpotRes) return (
+    if (!oneSpotRes) return (
         <div>
             Error: 404
             Sorry, this spot does not exist
         </div>
     )
 
-    const imageDisplay = (
-        Object.values(oneSpotRes.spotImages).map(img => {
-            return (
-                <img src={`${img.url}`}></img>
-            )
-        })
+    if(!oneSpotRes.SpotImages) return (
+        <div>
+            Error: 404
+            Sorry, this spot does not exist
+        </div>
     )
 
+    console.log(oneSpotRes.SpotImages[0], 'oneSpotRes spotImages')
 
     return (
         <div className="entire-page">
             <div className="title">
-            {oneSpotRes.name}
+                {oneSpotRes.name}
             </div>
             <div className="header-details">
                 <span>{`★ ${oneSpotRes.avgStarRating || "No Reviews Yet"}`} </span>
                 <span>{`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
-            <div className="spot-images">
-            {}
+            <div className="all-images-container">
+                <div className="main-image-container">
+               { oneSpotRes.SpotImages[0] && (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Pic Not Available or Invalid URL"></img>)}
+               </div>
+               <div className="small-image-container">
+               {oneSpotRes.SpotImages[2] && (<img src={oneSpotRes.SpotImages[2].url} className='small-image' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[3] && (<img src={oneSpotRes.SpotImages[3].url} className='small-image' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[4] && (<img src={oneSpotRes.SpotImages[4].url} className='small-image' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[1] && (<img src={oneSpotRes.SpotImages[1].url} className='small-image' alt="Pic Not Available or Invalid URL"></img>)}
+               </div>
             </div>
             In development
         </div>
