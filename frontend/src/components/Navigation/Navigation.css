@@ -12,3 +12,11 @@
 .hide-dropdown {
     visibility: hidden;
 }
+
+.entire-left {
+    padding-left: 10vw;
+}
+
+.entire-right {
+    padding-right: 10vw;
+}

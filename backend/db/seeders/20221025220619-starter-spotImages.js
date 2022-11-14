@@ -19,18 +19,18 @@ module.exports = {
       // https://drive.google.com/uc?export=view&id=[image_id]
       {
         spotId: 1,
-        url: "test-1",
+        url: "https://drive.google.com/uc?export=view&id=1f4km-UOqPGILVHxfeIna0Ixw2TZYQE4r",
         preview: true
       },
       {
         spotId: 1,
-        url: "test-2",
+        url: "https://drive.google.com/uc?export=view&id=1ckvfHq5dE_nnAQTS091fETXGQQg8pE05",
         preview: false
       },
       {
         spotId: 1,
-        url: "test-22",
-        preview: true
+        url: "https://drive.google.com/uc?export=view&id=1HdFCmy3H-eoS4LAecGj9sLOq0gjgyf4Z",
+        preview: false
       },
       {
         spotId: 2,

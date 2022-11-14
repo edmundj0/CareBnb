@@ -54,10 +54,10 @@ export default function SpotPage() {
                { oneSpotRes.SpotImages[0] && (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Pic Not Available or Invalid URL"></img>)}
                </div>
                <div className="small-image-container">
-               {oneSpotRes.SpotImages[2] && (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-1' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[3] && (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-2' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[4] && (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-3' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[1] && (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-4' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[1] && (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-1' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[2] && (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-2' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[3] && (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-3' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[4] && (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available or Invalid URL"></img>)}
                </div>
             </div>
             <div className="hosting-information">

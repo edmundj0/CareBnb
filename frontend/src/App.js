@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/FrontPage";
 import SpotPage from "./components/SpotPage";
+import UserManageSpots from "./components/UserManageSpots";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <SpotPage />
+          </Route>
+          <Route exact path= "/about-me/spots">
+            <UserManageSpots />
           </Route>
           {/* <Route path="/signup">
             <SignupFormPage />

@@ -20,7 +20,7 @@ export default function HomePage() {
                 {Object.values(allSpotsRes).map((spot) => {
                     return (
                          <div className='spot-outer-container' key={`spot ${spot.id}`}>
-                        <NavLink to={`spots/${spot.id}`}>
+                        <NavLink to={`/spots/${spot.id}`}>
                             <div className='spot-container'>
                         <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
                             {spot.name}

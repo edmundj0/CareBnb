@@ -40,25 +40,24 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <div>
+      <>
       <button onClick={isDropdown}>Get Started</button>
         <div className={display()}>
         <LoginFormModal />
         <SignupFormModal />
         </div>
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
-      </div>
+      </>
     );
   }
 
   return (
     <div className='entire-nav'>
-    {/* <ul>
-      <li> */}
+      <div className='entire-left'>
         <NavLink exact to="/">Home</NavLink>
+        </div>
+        <div className='entire-right'>
         {isLoaded && sessionLinks}
-      {/* </li>
-    </ul> */}
+        </div>
     </div>
   );
 }

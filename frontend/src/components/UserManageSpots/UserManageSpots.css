@@ -1,0 +1,30 @@
+.user-spot-container {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    /* position: relative; */
+    /* flex-wrap: wrap; */
+
+    border: 1px red solid;
+    width: 350px;
+    height: 350px;
+}
+
+.user-spots-total-container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    justify-items: center;
+    flex-wrap: wrap;
+    width: 80vw;
+    gap: 20px;
+    border: 2px solid green
+
+}
+
+.user-spot-image {
+    height: 100%;
+    width: auto;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
