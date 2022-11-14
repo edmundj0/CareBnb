@@ -23,6 +23,14 @@
     object-fit: cover;
 }
 
+#small-image-2 {
+    border-radius: 0 15px 0 0;
+}
+
+#small-image-4 {
+    border-radius: 0 0 15px 0;
+}
+
 .main-image-container {
     height: 500px;
     width: 39vw;
@@ -32,4 +40,38 @@
     height: 494px;
     width: 96%;
     object-fit: cover;
+    border-radius: 15px 0 0px 15px;
+}
+
+.entire-page {
+    width: 80vw;
+    margin: auto;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.header-details {
+    font-size: 15px;
+    color: black;
+    padding-bottom: 25px;
+}
+
+#home-hosted-by {
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+#contact-host {
+    color: rgb(34, 34, 34);
+    padding-top: 5px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px rgb(49, 48, 48) solid;
+    width: 60vw;
 }
