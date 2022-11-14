@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/FrontPage";
+import SpotPage from "./components/SpotPage";
 
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/spots/:spotId">
+            <SpotPage />
           </Route>
           {/* <Route path="/signup">
             <SignupFormPage />
