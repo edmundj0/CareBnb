@@ -104,18 +104,19 @@ export default function UserNewSpot() {
             </div>
             <div>
                 <label htmlFor="price">Price per Night</label>
-                <input placeholder="in US Dollars"
+                <input placeholder="Enter a Number"
                     id="price"
-                    type='text'
+                    type='number'
                     value={price}
                     onChange={e => setPrice(e.target.value)}
                 />
             </div>
             <div>
-                <input placeholder="Optional Image URL"
+                <input placeholder="Image URL"
                     type='text'
                     value={imgUrl}
                     onChange={e => setImgUrl(e.target.value)}
+                    required
                 />
             </div>
             <div>

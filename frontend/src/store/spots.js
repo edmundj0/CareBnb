@@ -89,7 +89,6 @@ export const postSpot = (info) => async (dispatch) => {
         const newSpot = await response.json()
         dispatch(createSpot(newSpot))
 
-
         const { imgUrl } = info
         if (imgUrl) {
             const imageResponse = await csrfFetch(`/api/spots/${newSpot.id}/images`, {

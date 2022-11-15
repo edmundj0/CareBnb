@@ -26,7 +26,7 @@ module.exports = {
       price: 200.20,
     },
     {
-      ownerId: 1,
+      ownerId: 2,
       address: '99 Madison Street',
       city: 'New York',
       state: 'NY',
@@ -62,7 +62,7 @@ module.exports = {
       price: 149.99,
     },
     {
-      ownerId: 1,
+      ownerId: 2,
       address: '77 Old Marina Road',
       city: 'Yellowstone',
       state: 'Wyoming',
