@@ -33,7 +33,8 @@ export default function UserManageSpots() {
 
     return (
     <div>
-    <h1>Manage My Spots</h1>
+    <h1 id='h1-header'>Manage My Spots</h1>
+    <button>Host New Spot</button>
         <div className='user-spots-total-container'>
             {userSpotsArr.map((spot) => {
                 return (
@@ -43,7 +44,10 @@ export default function UserManageSpots() {
                                 <img src={spot.previewImage} alt="preview" className="user-spot-image" key={`img ${spot.previewImage}`}></img>
                             </div>
                         </NavLink>
+                        <div>{spot.name}</div>
+                        <NavLink to={`/about-me/spots/${spot.id}/edit`}>
                         <button id='user-edit-button'>Edit this Spot</button>
+                        </NavLink>
                         <button id='user-delete-button'>Delete this Spot</button>
                     </div>
                 )

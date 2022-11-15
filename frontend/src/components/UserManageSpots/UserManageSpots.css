@@ -22,9 +22,46 @@
 
 }
 
+.user-spot-outer-container {
+    border: 2px pink solid;
+    display: flex;
+    flex-direction: column;
+}
+
 .user-spot-image {
     height: 100%;
     width: auto;
     border-radius: 10px;
-    border: 2px solid gray;
+}
+
+#user-edit-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    border-radius: 15px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+#user-edit-button:hover{
+    cursor: pointer;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#user-delete-button {
+    margin-top: 5px;
+    background-color: rgba(227, 99, 99);
+    border-radius: 10px;
+    height: 25px;
+    color: white;
+    border-color: rgb(225, 88, 88);
+}
+
+#h1-header {
+    display: flex;
+    justify-content: center;
 }

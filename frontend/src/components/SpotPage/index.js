@@ -15,7 +15,7 @@ export default function SpotPage() {
     console.log(currentUserId, 'currentUser')
 
     const test = useSelector(state => state)
-    console.log(test, 'test')
+    console.log(test, 'stateeeee')
 
     // const isOwner = ()
 
