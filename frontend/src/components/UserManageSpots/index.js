@@ -9,6 +9,7 @@ export default function UserManageSpots() {
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spot.aggregateSpots)
     const currentUser = useSelector(state => state.session.user)
+    
     useEffect(() => {
         dispatch(getAllSpots())
     }, [dispatch])

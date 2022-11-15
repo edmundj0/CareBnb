@@ -45,6 +45,9 @@ function ProfileButton({ user }) {
             <button>My Spots</button>
             </NavLink>
           </div>
+          <div>
+            <NavLink to="/about-me/reviews">My Reviews</NavLink>
+          </div>
           <button onClick={logout}>Log Out</button>
         </div>
         // <ul className="profile-dropdown">
