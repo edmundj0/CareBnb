@@ -14,10 +14,9 @@ export default function SpotPage() {
     const currentUserId = useSelector(state => state.session.user)
     console.log(currentUserId, 'currentUser')
 
-    const test = useSelector(state => state)
-    console.log(test, 'stateeeee')
+    // const test = useSelector(state => state)
+    // console.log(test, 'stateeeee')
 
-    // const isOwner = ()
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))

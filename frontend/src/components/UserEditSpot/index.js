@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getOneSpot, putSpot } from "../../store/spots";
 
 export default function UserEditSpot() {
@@ -12,23 +12,25 @@ export default function UserEditSpot() {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
 
+    const [errors, setErrors] = useState([]);
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const { spotId } = useParams()
 
     const currentUser = useSelector(state => state.session.user)
     const oneSpotRes = useSelector(state => {
-        console.log('oneSpotRes useSELECTOR FIRED')
+        // console.log('oneSpotRes useSELECTOR FIRED')
         return state.spot.individualSpot
     })
 
     useEffect(() => {
-        (console.log('spotId USEEFFECT FIRED'))
+        // (console.log('spotId USEEFFECT FIRED'))
         dispatch(getOneSpot(spotId))
     }, [dispatch, spotId])
 
     useEffect(() => {
-        (console.log('onespotres USEEFFECT FIRED'))
+        // (console.log('onespotres USEEFFECT FIRED'))
         if (oneSpotRes) {
             setName(oneSpotRes.name)
             setAddress(oneSpotRes.address)
@@ -40,10 +42,10 @@ export default function UserEditSpot() {
         }
     }, [oneSpotRes])
 
-    console.log(currentUser, 'currentUser')
-    console.log(oneSpotRes, 'oneSpotRes')
-    console.log(spotId, 'spotId')
-    console.log(name, 'name')
+    // console.log(currentUser, 'currentUser')
+    // console.log(oneSpotRes, 'oneSpotRes')
+    // console.log(spotId, 'spotId')
+    // console.log(name, 'name')
 
     const info = {
         name,
@@ -58,10 +60,23 @@ export default function UserEditSpot() {
     }
 
 
-    const onSubmit = e => {
+    const onSubmit = async (e) => {
         e.preventDefault()
+        let updatedSpot = await dispatch(putSpot(info, spotId))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors)
+            })
 
-        dispatch(putSpot(info, spotId))
+        console.log(updatedSpot, 'updatedSpot')
+
+        if(updatedSpot){
+            setErrors([])
+            history.push('/about-me/spots')
+        }
+
+
+
     }
 
     if (!currentUser) return <Redirect to="/" />
@@ -77,6 +92,9 @@ export default function UserEditSpot() {
     return (
         <div className='entire-edit-page'>
             <h1>Update Spot</h1>
+            <ul>
+                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
             <form onSubmit={onSubmit}>
                 <label htmlFor="name">Spot Name</label>
                 <input
@@ -94,7 +112,7 @@ export default function UserEditSpot() {
                 <input type="text" id="description" onChange={(e) => setDescription(e.target.value)} value={description}></input>
                 <label htmlFor="price">Price</label>
                 <input type="number" id="price" onChange={(e) => setPrice(e.target.value)} value={price}></input>
-                <button>Cancel</button>
+                {/* <button>Cancel</button> */}
                 <button type="submit">Save Changes</button>
             </form>
         </div>

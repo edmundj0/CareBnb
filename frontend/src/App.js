@@ -8,6 +8,7 @@ import HomePage from "./components/FrontPage";
 import SpotPage from "./components/SpotPage";
 import UserManageSpots from "./components/UserManageSpots";
 import UserEditSpot from "./components/UserEditSpot";
+import UserNewSpot from "./components/UserNewSpot";
 
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route exact path = "/about-me/spots/:spotId/edit">
             <UserEditSpot />
+          </Route>
+          <Route exact path= "/about-me/spots/new">
+            <UserNewSpot />
           </Route>
           {/* <Route path="/signup">
             <SignupFormPage />

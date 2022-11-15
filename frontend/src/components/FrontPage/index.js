@@ -7,7 +7,7 @@ import './HomePage.css'
 
 export default function HomePage() {
     const dispatch = useDispatch()
-    const allSpotsRes = useSelector(state => state.spot)
+    const allSpotsRes = useSelector(state => state.spot.aggregateSpots)
 
 
     useEffect(() => {
@@ -23,7 +23,11 @@ export default function HomePage() {
                         <NavLink to={`/spots/${spot.id}`}>
                             <div className='spot-container'>
                         <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
-                            {spot.name}
+                            <div className='spot-description-details'>
+                            <div>{spot.city}, {spot.state}</div><span></span>
+                            <div>{spot.name}</div>
+                            <div>{`$${spot.price} USD / night`}</div>
+                            </div>
                             </div>
                             </NavLink>
                         </div>

@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = "spots/GET_ALL_SPOTS";
 const GET_ONE_SPOT = "spots/GET_ONE_SPOT";
 const EDIT_SPOT = "spots/EDIT_SPOT";
+const CREATE_SPOT = "spots/CREATE_SPOT"
 
 
 //action creators
@@ -21,8 +22,15 @@ const editSpot = (editedSpot) => ({
     editedSpot
 })
 
+const createSpot = (addedSpot) => ({
+    type: CREATE_SPOT,
+    addedSpot
+})
+
 
 //thunks
+
+//read
 export const getAllSpots = () => async (dispatch) => {
     const response = await fetch('/api/spots')
     if (response.ok) {
@@ -31,6 +39,7 @@ export const getAllSpots = () => async (dispatch) => {
     }
 }
 
+//read
 export const getOneSpot = (spotId) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}`)
     if (response.ok) {
@@ -39,6 +48,7 @@ export const getOneSpot = (spotId) => async (dispatch) => {
     }
 }
 
+//edit spot (update)
 export const putSpot = (info, spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
@@ -48,34 +58,55 @@ export const putSpot = (info, spotId) => async (dispatch) => {
     if (response.ok) {
         const edited = await response.json()
         dispatch(editSpot(edited))
+        return edited
+    }
+}
+
+//create spot
+export const postSpot = (info) => async (dispatch) => {
+    const response = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(info)
+    })
+    if (response.ok) {
+        const newSpot = await response.json()
+        dispatch(createSpot(newSpot))
     }
 }
 
 
 
 //reducer
-const initialState = {individualSpot: {}};
+const initialState = {individualSpot: {}, aggregateSpots:{}};
 const spotsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_ALL_SPOTS:
-            newState = { ...state }
+            newState = { ...state,
+                individualSpot: {...state.individualSpot},
+                aggregateSpots: {...state.aggregateSpots}}
 
             action.allSpots.Spots.forEach(spot => {
-                newState[spot.id] = spot
+                newState.aggregateSpots[spot.id] = spot
             })
             return newState
         case GET_ONE_SPOT:
             // console.log(action, 'action')
-            newState = { ...state, individualSpot: {...state.individualSpot} }
+            newState = { ...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots} }
             newState.individualSpot = action.oneSpot
             console.log(newState, 'newState')
             return newState
         case EDIT_SPOT:
             console.log(state, 'THISISTHESTATE')
-            newState = { ...state, individualSpot: {...state.individualSpot}}
+            newState = { ...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots}}
             newState.individualSpot = action.editedSpot
-            newState[action.editedSpot.id] = action.editedSpot //reflect update in newState for all spots
+            newState.aggregateSpots[action.editedSpot.id] = action.editedSpot //reflect update in newState for all spots
+            return newState
+        case CREATE_SPOT:
+            newState = {...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots}}
+            newState.aggregateSpots[action.addedSpot.id] = action.addedSpot
+            newState.individualSpot = action.addedSpot
             return newState
         default:
             return state;

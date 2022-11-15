@@ -7,7 +7,7 @@ import './UserManageSpots.css'
 
 export default function UserManageSpots() {
     const dispatch = useDispatch()
-    const allSpots = useSelector(state => state.spot)
+    const allSpots = useSelector(state => state.spot.aggregateSpots)
     const currentUser = useSelector(state => state.session.user)
     useEffect(() => {
         dispatch(getAllSpots())
@@ -34,7 +34,9 @@ export default function UserManageSpots() {
     return (
     <div>
     <h1 id='h1-header'>Manage My Spots</h1>
+    <NavLink to={"/about-me/spots/new"}>
     <button>Host New Spot</button>
+    </NavLink>
         <div className='user-spots-total-container'>
             {userSpotsArr.map((spot) => {
                 return (
