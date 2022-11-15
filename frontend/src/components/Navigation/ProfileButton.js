@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
-function ProfileButton({ user }) {
+
+function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -31,34 +32,69 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-        &nbsp;My Account
-        {/* fas fa-user-circle */}
-      </button>
-      {showMenu && (
-        <div>
-          <div>{user.username}</div>
-          <div>{user.email}</div>
-          <div>
-            <NavLink to="/about-me/spots">
-            <button>My Spots</button>
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/about-me/reviews">My Reviews</NavLink>
-          </div>
+    <button onClick={openMenu}>
+      <i className="fas fa-user-circle" />
+    </button>
+    {showMenu && ( user ?
+      (<ul className="profile-dropdown">
+        <li>{user.username}</li>
+        <li>{user.email}</li>
+        <li><NavLink to="/about-me/spots">My Spots</NavLink></li>
+        <li><NavLink to="/about-me/reviews">My Reviews</NavLink></li>
+        <li>
           <button onClick={logout}>Log Out</button>
-        </div>
-        // <ul className="profile-dropdown">
-        //   <li>{user.username}</li>
-        //   <li>{user.email}</li>
-        //   <li>
-        //     <button onClick={logout}>Log Out</button>
-        //   </li>
-        // </ul>
-      )}
+        </li>
+      </ul>) :
+      ( <ul className="profile-dropdown">
+        <li>
+          <button onClick={()=> {
+            setLogin(true)
+            setShowModal(true)
+          }}>Log In</button>
+        </li>
+        <li>
+          <button onClick={() => {
+            setLogin(false)
+            setShowModal(true)
+          }}>Sign Up</button>
+        </li>
+      </ul>
+
+      )
+    )}
     </>
+
+
+
+    // <>
+    //   <button onClick={openMenu}>
+    //     <i className="fas fa-user-circle" />
+    //     &nbsp;My Account
+    //     {/* fas fa-user-circle */}
+    //   </button>
+    //   {showMenu && (
+    //     <div>
+    //       <div>{user.username}</div>
+    //       <div>{user.email}</div>
+    //       <div>
+    //         <NavLink to="/about-me/spots">
+    //         <button>My Spots</button>
+    //         </NavLink>
+    //       </div>
+    //       <div>
+    //         <NavLink to="/about-me/reviews">My Reviews</NavLink>
+    //       </div>
+    //       <button onClick={logout}>Log Out</button>
+    //     </div>
+    //     // <ul className="profile-dropdown">
+    //     //   <li>{user.username}</li>
+    //     //   <li>{user.email}</li>
+    //     //   <li>
+    //     //     <button onClick={logout}>Log Out</button>
+    //     //   </li>
+    //     // </ul>
+    //   )}
+    // </>
   );
 }
 

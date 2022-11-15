@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, Redirect } from "react-router-dom"
 import { deleteSpot, getAllSpots } from "../../store/spots"
 import LoginFormModal from "../LoginFormModal"
 import './UserManageSpots.css'
@@ -9,22 +9,13 @@ export default function UserManageSpots() {
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spot.aggregateSpots)
     const currentUser = useSelector(state => state.session.user)
-    
+
     useEffect(() => {
         dispatch(getAllSpots())
     }, [dispatch])
 
-    if(!currentUser){
-        return (
-            <div>
-            <div>Please login to continue</div>
-            <NavLink to="/">
-                Return Home
-            </NavLink>
-            <LoginFormModal />
-            </div>
-        )
-    }
+
+    if (!currentUser) return <Redirect to="/" />
 
 
     //filter returns empty array if none pass test

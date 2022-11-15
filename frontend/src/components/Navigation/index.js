@@ -5,61 +5,45 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
+import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginFormModal/LoginForm';
+import SignupFormPage from '../SignupFormPage/SignupForm';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-  const [showDropdown, setShowDropdown] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
-  const display = () => {
-    if(showDropdown) return 'show-dropdown'
-    else return 'hide-dropdown'
-  }
+  //if user clicks signup, flip login to false
+  const [login, setLogin] = useState(true);
 
-  const isDropdown = () => {
-    if(showDropdown) setShowDropdown(false)
-    else setShowDropdown(true)
-  }
-
-
-  useEffect(() => {
-    if (!showDropdown) return
-
-    const closeDropdown = () => {
-        setShowDropdown(false);
-    };
-
-    document.addEventListener('click', closeDropdown);
-
-    return () => document.removeEventListener("click", closeDropdown)
-  }, [showDropdown])
-
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <ProfileButton user={sessionUser} />
-    );
-  } else {
-    sessionLinks = (
-      <>
-      <button onClick={isDropdown}>Get Started</button>
-        <div className={display()}>
-        <LoginFormModal />
-        <SignupFormModal />
-        </div>
-      </>
-    );
-  }
+  // let sessionLinks;
+  // if (sessionUser) {
+  //   sessionLinks = (
+  //     <ProfileButton user={sessionUser} />
+  //   );
+  // } else {
+  //   sessionLinks = (
+  //     <>
+  //       <LoginFormModal />
+  //       <SignupFormModal />
+  //     </>
+  //   );
+  // }
 
   return (
-    <div className='entire-nav'>
-      <div className='entire-left'>
+    <ul>
+      <li>
         <NavLink exact to="/">Home</NavLink>
-        </div>
-        <div className='entire-right'>
-        {isLoaded && sessionLinks}
-        </div>
-    </div>
+        {/* thread in props, want profile button to be able to control whether modal pops or not */}
+        {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
+      </li>
+      {/* if you click background, now onClose prop will trigger */}
+      {showModal && <Modal onClose={() => setShowModal(false)}>
+        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
+      </Modal>}
+    </ul>
   );
 }
+
 
 export default Navigation;
