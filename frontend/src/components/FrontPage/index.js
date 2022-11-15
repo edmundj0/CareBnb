@@ -16,19 +16,37 @@ export default function HomePage() {
 
     return (
         <div>
+            {/* <div className='all-spots-total-container'>
+                {Object.values(allSpotsRes).map((spot) => {
+                    return (
+                        <div className='spot-outer-container' key={`spot ${spot.id}`}>
+                            <NavLink to={`/spots/${spot.id}`}>
+                                <div className='spot-container'>
+                                    <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
+                                    <div className='spot-description-details'>
+                                        <div>{spot.city}, {spot.state}</div><span></span>
+                                        <div>{spot.name}</div>
+                                        <div>{`$${spot.price} USD / night`}</div>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        </div>
+                    )
+                })}
+            </div> */}
             <div className='all-spots-total-container'>
                 {Object.values(allSpotsRes).map((spot) => {
                     return (
-                         <div className='spot-outer-container' key={`spot ${spot.id}`}>
-                        <NavLink to={`/spots/${spot.id}`}>
-                            <div className='spot-container'>
-                        <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
-                            <div className='spot-description-details'>
-                            <div>{spot.city}, {spot.state}</div><span></span>
-                            <div>{spot.name}</div>
-                            <div>{`$${spot.price} USD / night`}</div>
-                            </div>
-                            </div>
+                        <div className='spot-outer-container' key={`spot ${spot.id}`}>
+                            <NavLink to={`/spots/${spot.id}`}>
+                                <div className='spot-container'>
+                                    <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
+                                    <div className='spot-description-details'>
+                                        <div>{spot.city}, {spot.state}</div><span></span>
+                                        <div>{spot.name}</div>
+                                        <div>{`$${spot.price} USD / night`}</div>
+                                    </div>
+                                </div>
                             </NavLink>
                         </div>
                     )
