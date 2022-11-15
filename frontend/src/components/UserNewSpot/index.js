@@ -15,7 +15,8 @@ export default function UserNewSpot() {
     const [country, setCountry] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
-    
+    const [imgUrl, setImgUrl] = useState('');
+
 
     const [errors, setErrors] = useState([]);
 
@@ -31,7 +32,8 @@ export default function UserNewSpot() {
         description,
         price,
         lat: 1,
-        lng: 1
+        lng: 1,
+        imgUrl
     }
 
     const onSubmit = async (e) => {
@@ -110,8 +112,16 @@ export default function UserNewSpot() {
                 />
             </div>
             <div>
+                <input placeholder="Optional Image URL"
+                    type='text'
+                    value={imgUrl}
+                    onChange={e => setImgUrl(e.target.value)}
+                />
+            </div>
+            <div>
                 <button type="submit">Host New Spot</button>
             </div>
+            <span>Example URL: https://drive.google.com/uc?export=view&id=1c-W-8Ypo7dshsHaQ5GBBYYhy3XvUKGgr</span>
             </form>
 
         </div>
