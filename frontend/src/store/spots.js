@@ -3,7 +3,8 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = "spots/GET_ALL_SPOTS";
 const GET_ONE_SPOT = "spots/GET_ONE_SPOT";
 const EDIT_SPOT = "spots/EDIT_SPOT";
-const CREATE_SPOT = "spots/CREATE_SPOT"
+const CREATE_SPOT = "spots/CREATE_SPOT";
+const DELETE_SPOT = "/spots/DELETE_SPOT";
 
 
 //action creators
@@ -25,6 +26,11 @@ const editSpot = (editedSpot) => ({
 const createSpot = (addedSpot) => ({
     type: CREATE_SPOT,
     addedSpot
+})
+
+const delSpot = (spotId) => ({
+    type: DELETE_SPOT,
+    spotId
 })
 
 
@@ -72,6 +78,20 @@ export const postSpot = (info) => async (dispatch) => {
     if (response.ok) {
         const newSpot = await response.json()
         dispatch(createSpot(newSpot))
+        return newSpot
+    }
+}
+
+//delete spot
+export const deleteSpot = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok){
+        console.log(response)
+        console.log(await response.json())
+        dispatch(delSpot(spotId))
+
     }
 }
 
@@ -92,7 +112,7 @@ const spotsReducer = (state = initialState, action) => {
             })
             return newState
         case GET_ONE_SPOT:
-            // console.log(action, 'action')
+            //need to override nested objects to generate new references in memory
             newState = { ...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots} }
             newState.individualSpot = action.oneSpot
             console.log(newState, 'newState')
@@ -107,6 +127,11 @@ const spotsReducer = (state = initialState, action) => {
             newState = {...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots}}
             newState.aggregateSpots[action.addedSpot.id] = action.addedSpot
             newState.individualSpot = action.addedSpot
+            return newState
+        case DELETE_SPOT:
+            newState = {...state, individualSpot: {...state.individualSpot}, aggregateSpots: {...state.aggregateSpots}}
+
+            delete newState.aggregateSpots[action.spotId]
             return newState
         default:
             return state;

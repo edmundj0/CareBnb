@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { getAllSpots } from "../../store/spots"
+import { deleteSpot, getAllSpots } from "../../store/spots"
 import LoginFormModal from "../LoginFormModal"
 import './UserManageSpots.css'
 
@@ -50,7 +50,9 @@ export default function UserManageSpots() {
                         <NavLink to={`/about-me/spots/${spot.id}/edit`}>
                         <button id='user-edit-button'>Edit this Spot</button>
                         </NavLink>
-                        <button id='user-delete-button'>Delete this Spot</button>
+                        <button id='user-delete-button'
+                            onClick={() => dispatch(deleteSpot(spot.id))}
+                        >Delete this Spot</button>
                     </div>
                 )
             })}

@@ -15,6 +15,7 @@ export default function UserNewSpot() {
     const [country, setCountry] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
+    
 
     const [errors, setErrors] = useState([]);
 
