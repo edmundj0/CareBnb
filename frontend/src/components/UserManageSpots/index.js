@@ -24,32 +24,34 @@ export default function UserManageSpots() {
 
 
     return (
-    <div>
-    <h1 id='h1-header'>Manage My Spots</h1>
-    <NavLink to={"/about-me/spots/new"}>
-    <button>Host New Spot</button>
-    </NavLink>
-        <div className='user-spots-total-container'>
-            {userSpotsArr.map((spot) => {
-                return (
-                    <div className='user-spot-outer-container' key={`spot ${spot.id}`}>
-                        <NavLink to={`/spots/${spot.id}`}>
-                            <div className='user-spot-container'>
-                                <img src={spot.previewImage} alt="preview" className="user-spot-image" key={`img ${spot.previewImage}`}></img>
-                            </div>
-                        </NavLink>
-                        <div>{spot.name}</div>
-                        <NavLink to={`/about-me/spots/${spot.id}/edit`}>
-                        <button id='user-edit-button'>Edit this Spot</button>
-                        </NavLink>
-                        <button id='user-delete-button'
-                            onClick={() => dispatch(deleteSpot(spot.id))}
-                        >Delete this Spot</button>
-                    </div>
-                )
-            })}
+        <div>
+            <h1 id='h1-header'>Manage My Spots</h1>
+            <NavLink to={"/about-me/spots/new"}>
+                <button>Host New Spot</button>
+            </NavLink>
+            <div className='user-spots-total-container'>
+                {userSpotsArr.length > 0 ? (userSpotsArr.map((spot) => {
+                    return (
+                        <div className='user-spot-outer-container' key={`spot ${spot.id}`}>
+                            <NavLink to={`/spots/${spot.id}`}>
+                                <div className='user-spot-container'>
+                                    <img src={spot.previewImage} alt="preview" className="user-spot-image" key={`img ${spot.previewImage}`}></img>
+                                </div>
+                            </NavLink>
+                            <div>{spot.name}</div>
+                            <NavLink to={`/about-me/spots/${spot.id}/edit`}>
+                                <button id='user-edit-button'>Edit this Spot</button>
+                            </NavLink>
+                            <button id='user-delete-button'
+                                onClick={() => dispatch(deleteSpot(spot.id))}
+                            >Delete this Spot</button>
+                        </div>
+                    )
+                })) :
+                    <div>You currently don't host any spots. Get started today!</div>
+                }
+            </div>
         </div>
-    </div>
 
     )
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
+import UserNewReviewModal from "../UserNewReviewModal";
 import './SpotPage.css'
 
 export default function SpotPage() {
@@ -11,11 +12,18 @@ export default function SpotPage() {
     const oneSpotRes = useSelector(state => state.spot.individualSpot)
     console.log(oneSpotRes, 'oneSpotRes')
 
-    const currentUserId = useSelector(state => state.session.user)
-    console.log(currentUserId, 'currentUser')
+    const currentUser = useSelector(state => state.session.user)
+    console.log(currentUser, 'currentUser')
+
+    // const allReviews = useSelector(state => state.review.spotReviews)
 
     // const test = useSelector(state => state)
     // console.log(test, 'stateeeee')
+
+
+
+    let userAlreadyReviewed;
+
 
 
     useEffect(() => {
@@ -62,6 +70,19 @@ export default function SpotPage() {
             <div className="hosting-information">
             <div id='home-hosted-by'>{`Entire home hosted by ${oneSpotRes.Owner.firstName}`}</div>
             <div id='contact-host'>Contact owner for more information</div>
+            </div>
+            <div className="price-and-review">
+                    <div>
+                      <span>{`${oneSpotRes.price}`}</span>
+                    </div>
+                    <div>
+                        {currentUser && oneSpotRes.Owner.id !== currentUser.id && (
+                            <UserNewReviewModal />
+                        )}
+                    </div>
+            </div>
+            <div className="all-reviews-for-spot">
+
             </div>
             In development
         </div>

@@ -16,13 +16,15 @@ export default function UserManageReviews() {
         dispatch(getUserReviews())
     }, [dispatch])
 
-    //turn object into array
-    const userReviewsArr = Object.values(userReviews)
-
-
     if(!currentUser){
         return <Redirect to='/' />
     }
+
+
+    //turn object into array
+    const userReviewsArr = Object.values(userReviews).filter((review) => review.userId == currentUser.id)
+
+
 
     return (
         <div>
