@@ -21,7 +21,7 @@ export default function SpotReviews({spotId}) {
         <div>
             {allSpotReviewsArr.map(review=>{
                 return <div key={`review ${review.id}`}>
-                    <div>{review.User.firstName}</div>
+                    <div>{review?.User?.firstName}</div>
                     <div></div>
                 </div>
             })}

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-import SignupFormModal from '../SignupFormPage';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupFormPage from '../SignupFormPage/SignupForm';
@@ -31,7 +29,7 @@ function Navigation({ isLoaded }) {
   // }
 
   return (
-    <ul>
+    <ul className='nav-total-container'>
       <li>
         <NavLink exact to="/">Home</NavLink>
         {/* thread in props, want profile button to be able to control whether modal pops or not */}

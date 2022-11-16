@@ -1,0 +1,19 @@
+.user-review-outer-container{
+    border: 1px solid gray;
+    margin: 20px;
+    padding: 20px;
+    width: 50vw;
+    border-radius: 15px;
+}
+
+.user-review-outer-container:hover{
+    background-color: rgb(235, 232, 232);
+}
+
+.review-container{
+    border: 2px green solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

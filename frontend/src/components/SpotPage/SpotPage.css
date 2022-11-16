@@ -17,10 +17,16 @@
     height: 500px;
 }
 
+.pic-error-text {
+    font-style: italic;
+    font-size: small;
+}
+
 .small-image {
     height: 244px;
     width: 98%;
     object-fit: cover;
+
 }
 
 #small-image-2 {

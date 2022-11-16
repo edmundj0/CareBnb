@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import SpotReviews from "../SpotReviews";
 import UserNewReviewModal from "../UserNewReviewModal";
@@ -14,16 +14,16 @@ export default function SpotPage() {
     console.log(oneSpotRes, 'oneSpotRes')
 
     const currentUser = useSelector(state => state.session.user)
-    console.log(currentUser, 'currentUser')
+    // console.log(currentUser, 'currentUser')
 
-    // const allReviews = useSelector(state => state.review.spotReviews)
+    const allReviews = useSelector(state => state.review.spotReviews)
+    // console.log(allReviews, 'allReviews')
+    const allReviewsArr = Object.values(allReviews)
 
     // const test = useSelector(state => state)
     // console.log(test, 'stateeeee')
 
 
-
-    let userAlreadyReviewed;
 
 
 
@@ -34,18 +34,18 @@ export default function SpotPage() {
 
 
     if (!oneSpotRes) return (
-        <div>
-            Error: 404
-            Sorry, this spot does not exist
-        </div>
+        <div>Sorry this Spot doesn't exist</div>
     )
 
     if(!oneSpotRes.SpotImages) return (
-        <div>
-            Error: 404
-            Sorry, this spot does not exist
-        </div>
+        <div>Sorry this Spot doesn't exist</div>
     )
+
+    let userAlreadyReviewed;
+    if(currentUser && allReviewsArr.length > 0){
+        userAlreadyReviewed = allReviewsArr.find(review => review.userId === currentUser.id) //returns undefined if not already reviewed
+    }
+    // console.log(userAlreadyReviewed, 'userAlreadyReviewed')
 
 
     return isLoaded && (
@@ -54,18 +54,18 @@ export default function SpotPage() {
                 {oneSpotRes.name}
             </div>
             <div className="header-details">
-                <span>{`★ ${oneSpotRes.avgStarRating || "No Reviews Yet"} ·` } </span>
+                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating)*100)/100).toFixed(2) : "No Reviews Yet"} ·  </span>
                 <span>{`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
                 <div className="main-image-container">
-               { oneSpotRes.SpotImages[0] && (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Pic Not Available or Invalid URL"></img>)}
+               { oneSpotRes.SpotImages[0] ? (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Main Pic Not Available or Invalid URL"></img>) : <p>Main Pic Not Available or Invalid URL</p>}
                </div>
                <div className="small-image-container">
-               {oneSpotRes.SpotImages[1] && (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-1' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[2] && (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-2' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[3] && (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-3' alt="Pic Not Available or Invalid URL"></img>)}
-               {oneSpotRes.SpotImages[4] && (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available or Invalid URL"></img>)}
+               {oneSpotRes.SpotImages[1] ? (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-1' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 2 Not Available</p> }
+               {oneSpotRes.SpotImages[2] ? (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-2' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 3 Not Available</p>}
+               {oneSpotRes.SpotImages[3] ? (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-3' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 4 Not Available</p>}
+               {oneSpotRes.SpotImages[4] ? (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 5 Not Available</p>}
                </div>
             </div>
             <div className="hosting-information">
@@ -77,7 +77,7 @@ export default function SpotPage() {
                       <span>{`${oneSpotRes.price}`}</span>
                     </div>
                     <div>
-                        {currentUser && oneSpotRes.Owner.id !== currentUser.id && (
+                        {currentUser && oneSpotRes.Owner.id !== currentUser.id && (!userAlreadyReviewed) && (
                             <UserNewReviewModal />
                         )}
                     </div>

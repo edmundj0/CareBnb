@@ -1,22 +1,4 @@
-.entire-nav {
+.nav-total-container{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 2px solid gray;
-}
-
-.show-dropdown {
-    visibility: visible;
-}
-
-.hide-dropdown {
-    visibility: hidden;
-}
-
-.entire-left {
-    padding-left: 10vw;
-}
-
-.entire-right {
-    padding-right: 10vw;
 }

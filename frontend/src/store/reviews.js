@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_USER_REVIEWS = "/reviews/GET_ALL_USER_REVIEWS";
 const GET_ALL_SPOT_REVIEWS = "/reviews/GET_ALL_SPOT_REVIEWS";
-const CREATE_REVIEW = "spots/CREATE_REVIEW";
+const CREATE_REVIEW = "/reviews/CREATE_REVIEW";
+const DELETE_REVIEW = "/reviews/DELETE_REVIEW"
 
 //action creators
 const loadUserReviews = (userRevs) => ({
@@ -18,6 +19,11 @@ const loadSpotReviews = (spotRevs) => ({
 const createReview = (addedReview) => ({
     type: CREATE_REVIEW,
     addedReview
+})
+
+const delReview = (reviewId) => ({
+    type: DELETE_REVIEW,
+    reviewId
 })
 
 //thunks
@@ -55,6 +61,16 @@ export const postReview = (info, spotId) => async (dispatch) => {
     }
 }
 
+//delete
+export const deleteReview = (reviewId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok) {
+        dispatch(delReview(reviewId))
+    }
+}
+
 
 
 
@@ -69,7 +85,7 @@ const reviewsReducer = (state = initialState, action) => {
             let userAllReviewsReturnObj = {}
             newState = {
                 ...state,
-                userReviews: { ...state.userReviews},
+                userReviews: {},
                 spotReviews: { ...state.spotReviews}
             }
             // action.userRevs.Reviews.forEach(review => {
@@ -89,13 +105,17 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
         case GET_ALL_SPOT_REVIEWS:
             let spotAllReviewsReturnObj = {}
-            newState = {...state, userReviews: {...state.userReviews}, spotReviews: {...state.spotReviews}}
-
+            // newState = {...state, userReviews: {...state.userReviews}, spotReviews: {...state.spotReviews}}
+            newState = {...state, userReviews: {...state.userReviews}, spotReviews: {}}
             action.spotRevs.Reviews.forEach(review => {
                 spotAllReviewsReturnObj[review.id] = review
             })
             newState.spotReviews = spotAllReviewsReturnObj
             return newState;
+        case DELETE_REVIEW:
+            newState = {...state, userReviews: {...state.userReviews}, spotReviews: {}}
+            delete newState.userReviews[action.reviewId]
+            return newState
         default:
             return state;
     }
