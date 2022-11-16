@@ -1,12 +1,18 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_USER_REVIEWS = "/reviews/GET_ALL_USER_REVIEWS";
+const GET_ALL_SPOT_REVIEWS = "/reviews/GET_ALL_SPOT_REVIEWS";
 const CREATE_REVIEW = "spots/CREATE_REVIEW";
 
 //action creators
 const loadUserReviews = (userRevs) => ({
     type: GET_ALL_USER_REVIEWS,
     userRevs
+})
+
+const loadSpotReviews = (spotRevs) => ({
+    type: GET_ALL_SPOT_REVIEWS,
+    spotRevs
 })
 
 const createReview = (addedReview) => ({
@@ -22,6 +28,15 @@ export const getUserReviews = () => async (dispatch) => {
     if(response.ok) {
         const res = await response.json()
         dispatch(loadUserReviews(res))
+    }
+}
+
+//read
+export const getSpotReviews = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    if(response.ok) {
+        const res = await response.json()
+        dispatch(loadSpotReviews(res))
     }
 }
 
@@ -51,14 +66,19 @@ const reviewsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_ALL_USER_REVIEWS:
+            let userAllReviewsReturnObj = {}
             newState = {
                 ...state,
                 userReviews: { ...state.userReviews},
                 spotReviews: { ...state.spotReviews}
             }
+            // action.userRevs.Reviews.forEach(review => {
+            //     newState.userReviews[review.id] = review
+            // })
             action.userRevs.Reviews.forEach(review => {
-                newState.userReviews[review.id] = review
+                userAllReviewsReturnObj[review.id] = review
             })
+            newState.userReviews = userAllReviewsReturnObj
             console.log(newState, 'newState reviews')
             return newState
         case CREATE_REVIEW:
@@ -67,6 +87,15 @@ const reviewsReducer = (state = initialState, action) => {
             newState.spotReviews[action.addedReview.id] = action.addedReview
             newState.userReviews[action.addedReview.id] = action.addedReview
             return newState
+        case GET_ALL_SPOT_REVIEWS:
+            let spotAllReviewsReturnObj = {}
+            newState = {...state, userReviews: {...state.userReviews}, spotReviews: {...state.spotReviews}}
+
+            action.spotRevs.Reviews.forEach(review => {
+                spotAllReviewsReturnObj[review.id] = review
+            })
+            newState.spotReviews = spotAllReviewsReturnObj
+            return newState;
         default:
             return state;
     }

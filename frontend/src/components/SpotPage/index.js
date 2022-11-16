@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
+import SpotReviews from "../SpotReviews";
 import UserNewReviewModal from "../UserNewReviewModal";
 import './SpotPage.css'
 
@@ -82,7 +83,7 @@ export default function SpotPage() {
                     </div>
             </div>
             <div className="all-reviews-for-spot">
-
+                <SpotReviews spotId={spotId} />
             </div>
             In development
         </div>
