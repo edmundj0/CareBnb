@@ -31,8 +31,11 @@ export default function UserManageReviews() {
             {userReviewsArr.length > 0 && (
                 <div>
                     {userReviewsArr.map((review) => {
+                        console.log(review, 'review objectttttttt')
                         return (
                             <div className='user-review-outer-container' key={`review ${review.id}`}>
+                                <div>{review?.Spot?.name}</div>
+                                <div>{review?.Spot?.address}, {review?.Spot?.city}, {review?.Spot?.state}</div>
                                 {review.review}
                             </div>
                         )
