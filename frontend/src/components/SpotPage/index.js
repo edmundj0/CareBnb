@@ -29,7 +29,7 @@ export default function SpotPage() {
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))
-        .then(() => setIsLoaded(true))
+            .then(() => setIsLoaded(true))
     }, [dispatch, spotId])
 
 
@@ -37,12 +37,12 @@ export default function SpotPage() {
         <div>Sorry this Spot doesn't exist</div>
     )
 
-    if(!oneSpotRes.SpotImages) return (
+    if (!oneSpotRes.SpotImages) return (
         <div>Sorry this Spot doesn't exist</div>
     )
 
     let userAlreadyReviewed;
-    if(currentUser && allReviewsArr.length > 0){
+    if (currentUser && allReviewsArr.length > 0) {
         userAlreadyReviewed = allReviewsArr.find(review => review.userId === currentUser.id) //returns undefined if not already reviewed
     }
     // console.log(userAlreadyReviewed, 'userAlreadyReviewed')
@@ -54,36 +54,43 @@ export default function SpotPage() {
                 {oneSpotRes.name}
             </div>
             <div className="header-details">
-                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating)*100)/100).toFixed(2) : "No Reviews Yet"} ·  </span>
+                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating) * 100) / 100).toFixed(2) : "No Reviews Yet"} ·  </span>
                 <span>{`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
                 <div className="main-image-container">
-               { oneSpotRes.SpotImages[0] ? (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Main Pic Not Available or Invalid URL"></img>) : <p>Main Pic Not Available or Invalid URL</p>}
-               </div>
-               <div className="small-image-container">
-               {oneSpotRes.SpotImages[1] ? (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-1' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 2 Not Available</p> }
-               {oneSpotRes.SpotImages[2] ? (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-2' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 3 Not Available</p>}
-               {oneSpotRes.SpotImages[3] ? (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-3' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 4 Not Available</p>}
-               {oneSpotRes.SpotImages[4] ? (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 5 Not Available</p>}
-               </div>
+                    {oneSpotRes.SpotImages[0] ? (<img src={oneSpotRes.SpotImages[0].url} id='main-image' alt="Main Pic Not Available or Invalid URL"></img>) : <p>Main Pic Not Available or Invalid URL</p>}
+                </div>
+                <div className="small-image-container">
+                    {oneSpotRes.SpotImages[1] ? (<img src={oneSpotRes.SpotImages[1].url} className='small-image' id='small-image-1' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 2 Not Available</p>}
+                    {oneSpotRes.SpotImages[2] ? (<img src={oneSpotRes.SpotImages[2].url} className='small-image' id='small-image-2' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 3 Not Available</p>}
+                    {oneSpotRes.SpotImages[3] ? (<img src={oneSpotRes.SpotImages[3].url} className='small-image' id='small-image-3' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 4 Not Available</p>}
+                    {oneSpotRes.SpotImages[4] ? (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 5 Not Available</p>}
+                </div>
             </div>
-            <div className="hosting-information">
-            <div id='home-hosted-by'>{`Entire home hosted by ${oneSpotRes.Owner.firstName}`}</div>
-            <div id='contact-host'>Contact owner for more information</div>
-            </div>
-            <div className="price-and-review">
-                    <div>
-                      <span>{`${oneSpotRes.price}`}</span>
+            <div className="entire-container-below-images">
+                <div className="left-description-container">
+                    <div className="hosting-information">
+                        <div className="hosting-info-text">
+                            <div id='home-hosted-by'>{`Entire home hosted by ${oneSpotRes.Owner.firstName}`}</div>
+                            <div id='contact-host'>Contact owner for more information</div>
+                        </div>
+                       <i class="fa-solid fa-id-badge"></i>
                     </div>
-                    <div>
-                        {currentUser && oneSpotRes.Owner.id !== currentUser.id && (!userAlreadyReviewed) && (
-                            <UserNewReviewModal />
-                        )}
+                    <div className="all-reviews-for-spot">
+                        <SpotReviews spotId={spotId} />
                     </div>
-            </div>
-            <div className="all-reviews-for-spot">
-                <SpotReviews spotId={spotId} />
+                </div>
+                <div className="right-description-container">
+                    <div className="price-and-review">
+                        <div>{`${oneSpotRes.price}`}</div>
+                        <div>
+                            {currentUser && oneSpotRes.Owner.id !== currentUser.id && (!userAlreadyReviewed) && (
+                                <UserNewReviewModal />
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
             In development
         </div>

@@ -41,8 +41,8 @@ function ProfileButton({ user, setLogin, setShowModal }) {
       (<ul className="profile-dropdown">
         <li className="profile-dropdown-li profile-bold-text">{user.username}</li>
         <li className="profile-dropdown-li reviews-li profile-bold-text">{user.email}</li>
-        <li className="profile-dropdown-li dropdown-hover"><NavLink to="/about-me/spots" style={{textDecoration: 'none'}}>My Spots</NavLink></li>
-        <li className="profile-dropdown-li reviews-li dropdown-hover"><NavLink to="/about-me/reviews" style={{textDecoration: 'none'}}>My Reviews</NavLink></li>
+        <li className="profile-dropdown-li dropdown-hover"><NavLink to="/about-me/spots" style={{textDecoration: 'none'}}>Manage My Spots</NavLink></li>
+        <li className="profile-dropdown-li reviews-li dropdown-hover"><NavLink to="/about-me/reviews" style={{textDecoration: 'none'}}>Manage My Reviews</NavLink></li>
         <li className="profile-dropdown-li">
           <button id="logout-button" onClick={logout}>Log Out</button>
         </li>

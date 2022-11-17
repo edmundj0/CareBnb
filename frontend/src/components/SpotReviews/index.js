@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotReviews } from "../../store/reviews";
 
-export default function SpotReviews({spotId}) {
+export default function SpotReviews({ spotId }) {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -11,7 +11,7 @@ export default function SpotReviews({spotId}) {
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-        .then(() => setIsLoaded(true))
+            .then(() => setIsLoaded(true))
     }, [dispatch, spotId])
 
     const allSpotReviewsArr = Object.values(allSpotReviews)
@@ -19,12 +19,13 @@ export default function SpotReviews({spotId}) {
 
     return isLoaded && (
         <div>
-            {allSpotReviewsArr.map(review=>{
-                return <div key={`review ${review.id}`}>
+            {allSpotReviewsArr?.length > 0 ? (allSpotReviewsArr.map(review => {
+                return <div key={`review ${review.id}`} className="review-total-container">
                     <div>{review?.User?.firstName}</div>
-                    <div></div>
+                    <div>{review ? (review.createdAt ? review?.createdAt?.slice(0, 10) : null) : null}</div>
+                    <div>{review?.review}</div>
                 </div>
-            })}
+            })) : <div>No Reviews Available for this Spot Yet</div>}
         </div>
     )
 }

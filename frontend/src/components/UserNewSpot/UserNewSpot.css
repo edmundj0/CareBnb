@@ -1,0 +1,61 @@
+.entire-create-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.create-form-input {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid lightgray;
+}
+
+.create-form-input:hover {
+    background-color: beige;
+}
+
+.create-form-input-description {
+    resize: none;
+    padding: 20px 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid lightgray;
+}
+
+.create-form-input-description:hover {
+    background-color: beige;
+}
+
+#price-per-night {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.create-submit-button {
+    padding: 20px;
+    background-color: lightblue;
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+.create-submit-button:hover {
+    cursor: pointer;
+    background-color: #2C5F2DFF;
+    font-weight: bold;
+}
+
+.example-url-text {
+    font-style: italic;
+    font-size: 12px;
+}

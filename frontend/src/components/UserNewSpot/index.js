@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { postSpot } from "../../store/spots";
+import './UserNewSpot.css';
 
 export default function UserNewSpot() {
 
@@ -40,12 +41,12 @@ export default function UserNewSpot() {
         e.preventDefault()
 
         let newlyCreatedSpot = await dispatch(postSpot(info))
-        .catch(async (res)=> {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors)
-        })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors)
+            })
 
-        if(newlyCreatedSpot){
+        if (newlyCreatedSpot) {
             setErrors([])
             history.push('/about-me/spots')
         }
@@ -55,75 +56,88 @@ export default function UserNewSpot() {
 
     return (
         <div className='entire-create-page'>
-            <h1>Create New Spot</h1>
+            <h1 className="create-header">Create New Spot</h1>
             <ul>
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <form onSubmit={onSubmit}>
-            <div>
-                <input placeholder="Spot Name"
-                    type={'text'}
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="Address"
-                    type='text'
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="City"
-                    type='text'
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="State"
-                    type='text'
-                    value={state}
-                    onChange={e => setState(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="Country"
-                    type='text'
-                    value={country}
-                    onChange={e => setCountry(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="Description"
-                    type='text'
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="price">Price per Night</label>
-                <input placeholder="Enter a Number"
-                    id="price"
-                    type='number'
-                    value={price}
-                    onChange={e => setPrice(e.target.value)}
-                />
-            </div>
-            <div>
-                <input placeholder="Image URL"
-                    type='text'
-                    value={imgUrl}
-                    onChange={e => setImgUrl(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <button type="submit">Host New Spot</button>
-            </div>
-            <span>Example URL: https://drive.google.com/uc?export=view&id=1c-W-8Ypo7dshsHaQ5GBBYYhy3XvUKGgr</span>
+            <form onSubmit={onSubmit} className="create-form">
+                <div>
+                    <input placeholder="Spot Name"
+                        type={'text'}
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <input placeholder="Address"
+                        type='text'
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <input placeholder="City"
+                        type='text'
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <input placeholder="State"
+                        type='text'
+                        value={state}
+                        onChange={e => setState(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <input placeholder="Country"
+                        type='text'
+                        value={country}
+                        onChange={e => setCountry(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <input placeholder="Image URL"
+                        type='text'
+                        value={imgUrl}
+                        onChange={e => setImgUrl(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <div id="price-per-night">&nbsp;Price per night (USD)</div>
+                    <input placeholder="Price per Night"
+                        id="price"
+                        type='number'
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
+                        required
+                        className="create-form-input"
+                    />
+                </div>
+                <div>
+                    <textarea placeholder="Description"
+                        type='text'
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        required
+                        className="create-form-input-description"
+                    />
+                </div>
+                <button className="create-submit-button" type="submit">Host New Spot</button>
             </form>
+            <div className="example-url-text">Example Image URL: https://drive.google.com/uc?export=view&id=1c-W-8Ypo7dshsHaQ5GBBYYhy3XvUKGgr</div>
 
         </div>
     )

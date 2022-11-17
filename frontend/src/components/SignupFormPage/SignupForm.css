@@ -1,8 +1,9 @@
 .entire-signup-page {
     margin: auto;
     display: flex;
-    flex-direction: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: fit-content;
 }
 
