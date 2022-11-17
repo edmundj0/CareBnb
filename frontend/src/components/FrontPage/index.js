@@ -38,11 +38,14 @@ export default function HomePage() {
                 {Object.values(allSpotsRes).map((spot) => {
                     return (
                         <div className='spot-outer-container' key={`spot ${spot.id}`}>
-                            <NavLink to={`/spots/${spot.id}`}>
+                            <NavLink to={`/spots/${spot.id}`} style={{textDecoration:'none'}}>
                                 <div className='spot-container'>
                                     <img src={spot.previewImage} alt="preview" className="spot-image" key={`img ${spot.previewImage}`}></img>
                                     <div className='spot-description-details'>
-                                        <div>{spot.city}, {spot.state}</div><span></span>
+                                        <div className="spot-description-first-row">
+                                            <div id="city-and-state">{spot.city}, {spot.state}</div>
+                                            <div>★{spot.avgRating ? Math.round((Number(spot.avgRating) * 100) / 100)?.toFixed(2) : "New"}</div>
+                                        </div>
                                         <div>{spot.name}</div>
                                         <div>{`$${spot.price} USD / night`}</div>
                                     </div>
@@ -53,7 +56,7 @@ export default function HomePage() {
                 })}
             </div>
             <div>
-                
+
             </div>
         </div>
     )

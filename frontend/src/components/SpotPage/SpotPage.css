@@ -101,6 +101,8 @@
 
 .left-description-container {
     flex-grow: 0.5;
+    flex-wrap: wrap;
+    width: 30vw;
 }
 
 .right-description-container {

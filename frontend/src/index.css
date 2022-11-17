@@ -3,3 +3,8 @@
 * {
     font-family: 'Montserrat', Verdana, Geneva, Tahoma, sans-serif;
 }
+
+#main-logo {
+    height: 100px;
+    width: 100px;
+}

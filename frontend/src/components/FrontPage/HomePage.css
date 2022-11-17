@@ -69,9 +69,6 @@
     height: auto;
 }
 
-.spot-description-details {
-
-}
 
 .spot-image{
     height: 300px;
@@ -79,4 +76,14 @@
     border-radius: 10px;
     border: 2px solid gray;
     object-fit: cover;
+}
+
+.spot-description-first-row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#city-and-state {
+    color: black;
 }
