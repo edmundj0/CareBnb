@@ -109,7 +109,21 @@
 }
 
 .login-signup-buttons:hover {
-    cursor: pointer;
     font-weight: bold;
     background-color: lightgray;
+    cursor: pointer;
+}
+
+.manage-spots-reviews-button {
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+.manage-spots-reviews-button:hover {
+    cursor: pointer;
+    background-color: lightblue;
 }

@@ -54,8 +54,8 @@ export default function SpotPage() {
                 {oneSpotRes.name}
             </div>
             <div className="header-details">
-                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating) * 100) / 100).toFixed(2) : "No Reviews Yet"} ·  </span>
-                <span>{`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
+                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating) * 100) / 100).toFixed(2) : "No Reviews Yet"} &nbsp; · </span>
+                <span>&nbsp;Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
                 <div className="main-image-container">
@@ -82,8 +82,8 @@ export default function SpotPage() {
                     </div>
                 </div>
                 <div className="right-description-container">
-                    <div className="price-and-review">
-                        <div>{`${oneSpotRes.price}`}</div>
+                    <div className="price-and-review-container">
+                        <div className="price-number">{`$${oneSpotRes.price}`}<span className="per-night-span">&nbsp;/ night</span></div>
                         <div>
                             {currentUser && oneSpotRes.Owner.id !== currentUser.id && (!userAlreadyReviewed) && (
                                 <UserNewReviewModal />
@@ -92,7 +92,6 @@ export default function SpotPage() {
                     </div>
                 </div>
             </div>
-            In development
         </div>
     )
 }

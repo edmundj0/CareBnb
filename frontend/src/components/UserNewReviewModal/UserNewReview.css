@@ -1,0 +1,54 @@
+.post-new-review-button {
+    background-color: #66A182;
+    cursor: pointer;
+    margin-top: 20px;
+    border: 3px solid #407d5c;
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: 400;
+}
+
+.post-new-review-button:hover {
+    background-color: #2d6949;
+}
+
+.entire-review-create-page {
+    box-sizing: border-box;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-form-input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid rgb(235, 234, 234);
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.review-form-text {
+    font-size: 14px;
+    color: rgb(109, 109, 109);
+    font-style: italic;
+}
+
+.new-review-submit-button {
+    padding: 10px;
+    border: none;
+    background-color:rgb(109, 109, 109);
+    color: white;
+    font-weight: 600;
+    border-radius: 7px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.new-review-submit-button:hover {
+    cursor: pointer;
+}

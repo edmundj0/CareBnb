@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { postReview } from "../../store/reviews";
+import './UserNewReview.css';
 
 export default function UserNewReview() {
     const dispatch = useDispatch()
@@ -49,23 +50,27 @@ export default function UserNewReview() {
 
             <form onSubmit={onSubmit}>
             <div>
+                <div className="review-form-text">Review Description</div>
                 <input placeholder="Review Description"
                     type={'text'}
                     value={reviewDescription}
                     required
                     onChange={e => setReviewDescription(e.target.value)}
+                    className="review-form-input"
                 />
             </div>
             <div>
+                <div className="review-form-text">Stars (1-5)</div>
                 <input placeholder="Stars"
-                    type='number' min='1'
+                    type='number' min='1' max='5'
                     value={stars}
                     required
                     onChange={e => setStars(e.target.value)}
+                    className="review-form-input"
                 />
             </div>
             <div>
-                <button type="submit">Post Review</button>
+                <button className="new-review-submit-button" type="submit">Post Review</button>
             </div>
             </form>
         </div>

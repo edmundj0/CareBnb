@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotReviews } from "../../store/reviews";
+import './SpotReviews.css';
 
 export default function SpotReviews({ spotId }) {
     const dispatch = useDispatch()
@@ -18,14 +19,20 @@ export default function SpotReviews({ spotId }) {
     console.log(allSpotReviewsArr, 'ARRAY')
 
     return isLoaded && (
-        <div>
-            {allSpotReviewsArr?.length > 0 ? (allSpotReviewsArr.map(review => {
-                return <div key={`review ${review.id}`} className="review-total-container">
-                    <div>{review?.User?.firstName}</div>
-                    <div>{review ? (review.createdAt ? review?.createdAt?.slice(0, 10) : null) : null}</div>
-                    <div>{review?.review}</div>
-                </div>
-            })) : <div>No Reviews Available for this Spot Yet</div>}
-        </div>
+        <>
+            <h3>Reviews</h3>
+            <div>
+                {allSpotReviewsArr?.length > 0 ? (allSpotReviewsArr.map(review => {
+                    return <div key={`review ${review.id}`} className="review-total-container">
+                        <div className="review-header-container">
+                            <div className="review-first-name">{review?.User?.firstName}</div>
+                            <div className="review-stars">{review?.stars}★</div>
+                        </div>
+                        <div className="review-date">{review ? (review.createdAt ? review?.createdAt?.slice(0, 10) : null) : null}</div>
+                        <div>{review?.review}</div>
+                    </div>
+                })) : <div>No Reviews Available for this Spot Yet</div>}
+            </div>
+        </>
     )
 }
