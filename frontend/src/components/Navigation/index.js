@@ -29,17 +29,23 @@ function Navigation({ isLoaded }) {
   // }
 
   return (
-    <ul className='nav-total-container'>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <div className='nav-total-container'>
+      <NavLink exact to="/">Home - insert Logo Here</NavLink>
+      <div className="nav-right-side">
+
+        {sessionUser ?
+        <NavLink to="/about-me/spots/new" style={{textDecoration: 'none'}}><span id='host-spot-button'>Host A Spot!</span></NavLink> : null
+        }
+
         {/* thread in props, want profile button to be able to control whether modal pops or not */}
         {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
-      </li>
-      {/* if you click background, now onClose prop will trigger */}
-      {showModal && <Modal onClose={() => setShowModal(false)}>
-        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
-      </Modal>}
-    </ul>
+        {/* if you click background, now onClose prop will trigger */}
+        {showModal && (<Modal onClose={() => setShowModal(false)}>
+          {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
+        </Modal>)}
+
+      </div>
+    </div>
   );
 }
 
