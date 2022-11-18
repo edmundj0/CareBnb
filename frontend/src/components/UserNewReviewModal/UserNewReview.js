@@ -4,7 +4,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { postReview } from "../../store/reviews";
 import './UserNewReview.css';
 
-export default function UserNewReview() {
+export default function UserNewReview({ setShowModal, setHasSubmitted }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { spotId } = useParams()
@@ -27,6 +27,8 @@ export default function UserNewReview() {
         e.preventDefault()
 
         let newlyCreatedReview = await dispatch(postReview(info, spotId))
+            .then(() => setShowModal(false))
+            .then(() => setHasSubmitted(prevVal => !prevVal))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
@@ -34,7 +36,7 @@ export default function UserNewReview() {
 
         if (newlyCreatedReview) {
             setErrors([])
-            history.push('/about-me/reviews')
+            // history.push(`spots/${spotId}`)
         }
     }
 

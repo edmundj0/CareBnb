@@ -108,7 +108,7 @@ export default function UserNewSpot() {
 
 
                     <input placeholder="Image URL"
-                        type='text'
+                        type='url'
                         value={imgUrl}
                         onChange={e => setImgUrl(e.target.value)}
                         required

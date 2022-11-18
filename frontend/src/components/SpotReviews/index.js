@@ -12,8 +12,9 @@ export default function SpotReviews({ spotId }) {
 
     useEffect(() => {
         dispatch(getSpotReviews(spotId))
-            .then(() => setIsLoaded(true))
+        .then(() => setIsLoaded(true))
     }, [dispatch, spotId])
+
 
     const allSpotReviewsArr = Object.values(allSpotReviews)
     console.log(allSpotReviewsArr, 'ARRAY')

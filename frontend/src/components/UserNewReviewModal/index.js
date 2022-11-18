@@ -3,7 +3,7 @@ import { Modal } from "../../context/Modal"
 import UserNewReview from "./UserNewReview"
 import './UserNewReview.css'
 
-export default function UserNewReviewModal(){
+export default function UserNewReviewModal({setHasSubmitted}){
     const [ showModal, setShowModal ] = useState(false)
 
 
@@ -12,7 +12,7 @@ export default function UserNewReviewModal(){
         <button className="post-new-review-button" onClick={()=>setShowModal(true)}>Post New Review</button>
         {showModal && (
             <Modal onClose={()=>setShowModal(false)}>
-                <UserNewReview />
+                <UserNewReview setShowModal={setShowModal} setHasSubmitted={setHasSubmitted} />
             </Modal>
         )}
         </>

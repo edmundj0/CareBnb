@@ -13,6 +13,8 @@ export default function SpotPage() {
     const oneSpotRes = useSelector(state => state.spot.individualSpot)
     console.log(oneSpotRes, 'oneSpotRes')
 
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     const currentUser = useSelector(state => state.session.user)
     // console.log(currentUser, 'currentUser')
 
@@ -30,7 +32,7 @@ export default function SpotPage() {
     useEffect(() => {
         dispatch(getOneSpot(spotId))
             .then(() => setIsLoaded(true))
-    }, [dispatch, spotId])
+    }, [dispatch, spotId, hasSubmitted])
 
 
     if (!oneSpotRes) return null
@@ -53,7 +55,7 @@ export default function SpotPage() {
                 {oneSpotRes.name}
             </div>
             <div className="header-details">
-                <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating) * 100) / 100).toFixed(2) : "No Reviews Yet"} &nbsp; · </span>
+                <span>★ {oneSpotRes.avgStarRating ? ((Number(oneSpotRes.avgStarRating) * 100) / 100)?.toFixed(2) : "No Reviews Yet"} &nbsp; · </span>
                 <span>&nbsp; <i class="fa-sharp fa-solid fa-medal"></i> Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
@@ -67,7 +69,7 @@ export default function SpotPage() {
                     {oneSpotRes.SpotImages[4] ? (<img src={oneSpotRes.SpotImages[4].url} className='small-image' id='small-image-4' alt="Pic Not Available"></img>) : <p className='pic-error-text'>Pic 5 Not Available</p>}
                 </div>
             </div>
-            <div className="entire-container-below-images">
+            <div className="first-entire-container-below-images">
                 <div className="left-description-container">
                     <div className="hosting-information">
                         <div className="hosting-info-text">
@@ -103,22 +105,38 @@ export default function SpotPage() {
                         <div className="air-cover-text">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
 
                     </div>
-
-                    <div className="all-reviews-for-spot">
-                        <SpotReviews spotId={spotId} />
+                    <div className="spot-description-container">
+                        <div className="spot-description-text">
+                            {oneSpotRes?.description}
+                        </div>
                     </div>
+
+
                 </div>
                 <div className="right-description-container">
                     <div className="price-and-review-container">
                         <div className="price-number">{`$${oneSpotRes.price}`}<span className="per-night-span">&nbsp;/ night</span></div>
                         <div>
                             {currentUser && oneSpotRes.Owner.id !== currentUser.id && (!userAlreadyReviewed) && (
-                                <UserNewReviewModal />
+                                <UserNewReviewModal setHasSubmitted={setHasSubmitted} />
                             )}
                         </div>
+                        <div className="cant-review-warning">
+                            { (currentUser && oneSpotRes?.Owner?.id === currentUser?.id) ? "*Can't review a spot you own!" : null }
+                            { (currentUser && userAlreadyReviewed) ? "*Can't review a spot you already reviewed!" : null}
+                        </div>
+                    </div>
+
+                    <div className="feature-coming-soon">
+                        Booking Feature Below Coming Soon!
                     </div>
                 </div>
+
             </div>
+
+            <div className="all-reviews-for-spot">
+                        <SpotReviews spotId={spotId} />
+                    </div>
         </div>
     )
 }

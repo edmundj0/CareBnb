@@ -44,7 +44,7 @@ export default function HomePage() {
                                     <div className='spot-description-details'>
                                         <div className="spot-description-first-row">
                                             <div id="city-and-state">{spot.city}, {spot.state}</div>
-                                            <div id="rating-text">🌴{spot.avgRating ? Math.round((Number(spot.avgRating) * 100) / 100)?.toFixed(2) : "New"}</div>
+                                            <div id="rating-text">🌴{spot.avgRating ? ((Number(spot.avgRating) * 100) / 100)?.toFixed(2) : "New"}</div>
                                         </div>
                                         <div id="spot-name-text">{spot.name}</div>
                                         <div id="spot-price-text">{`$${spot.price}`} <span id="night-text">night</span></div>

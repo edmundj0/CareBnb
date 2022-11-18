@@ -24,8 +24,8 @@
 
 .entire-review-create-page {
     box-sizing: border-box;
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;

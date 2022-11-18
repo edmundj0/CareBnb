@@ -106,10 +106,11 @@
 }
 
 
-.entire-container-below-images {
+.first-entire-container-below-images {
     display: flex;
     flex-direction: row;
     letter-spacing: -1px;
+    border-bottom: 2px black solid;
 }
 
 .left-description-container {
@@ -156,6 +157,26 @@
     border-bottom: black 1px solid;
 }
 
+.spot-description-container {
+    padding-bottom: 40px;
+}
+
+.spot-description-text {
+    margin-top: 40px;
+    color: gray;
+}
+
+.cant-review-warning {
+    padding-top: 20px;
+    color: gray;
+}
+
+.feature-coming-soon {
+    text-align: center;
+    font-style: italic;
+    color: #333;
+    margin-top: 50px;
+}
 
 
 
