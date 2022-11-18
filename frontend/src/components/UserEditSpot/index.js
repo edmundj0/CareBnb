@@ -139,7 +139,7 @@ export default function UserEditSpot() {
 
                     <div id="price-per-night-edit">&nbsp;Price per night (USD)</div>
                     <input required
-                        type="number" min="0" step="0.01"
+                        type="number" min="0"
                         className="edit-form-input-description"
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}

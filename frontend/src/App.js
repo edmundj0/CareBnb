@@ -43,6 +43,9 @@ function App() {
           <Route exact path= "/about-me/reviews">
             <UserManageReviews />
           </Route>
+          <Route>
+            <h1>404 Not Found</h1>
+          </Route>
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}

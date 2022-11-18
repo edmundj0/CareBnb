@@ -23,7 +23,7 @@ module.exports = {
       lng: -113.96,
       name: 'Glacier National Park Cozy Spot',
       description: 'Come check out this amazing spot near the park!',
-      price: 200.20,
+      price: 200,
     },
     {
       ownerId: 2,
@@ -35,7 +35,7 @@ module.exports = {
       lng: -123.43,
       name: 'Olympic National Park in Port Angeles',
       description: 'Great central location!',
-      price: 500.20,
+      price: 500,
     },
     {
       ownerId: 2,
@@ -47,7 +47,7 @@ module.exports = {
       lng: -96.99,
       name: 'Chickasaw National Recreation Home',
       description: 'Good views at this newly remodeled location',
-      price: 300.50,
+      price: 300,
     },
     {
       ownerId: 1,
@@ -59,7 +59,7 @@ module.exports = {
       lng: -93.05,
       name: 'Hot Springs National Park Cabin',
       description: 'Great spot close to attractions',
-      price: 149.99,
+      price: 149,
     },
     {
       ownerId: 2,
@@ -71,7 +71,7 @@ module.exports = {
       lng: -110.56,
       name: 'Yellowstone House Near Water',
       description: 'Great spot to stay and observe wildlife',
-      price: 209.95,
+      price: 209,
     },
     {
       ownerId: 4,
@@ -83,7 +83,7 @@ module.exports = {
       lng: -119.60,
       name: 'Yosemite Cabin In Valley',
       description: 'Amazing Relaxing spot',
-      price: 349.95,
+      price: 349,
     },
     {
       ownerId: 2,
@@ -95,7 +95,7 @@ module.exports = {
       lng: -112.13,
       name: 'Grand Canyon Spot',
       description: 'Spot close to attractions with beautiful view',
-      price: 119.97,
+      price: 119,
     },
     {
       ownerId: 4,
@@ -107,7 +107,7 @@ module.exports = {
       lng: -121.71,
       name: 'Mt. Hood Relaxing Location',
       description: 'Home near Mt. Hood National Park',
-      price: 190.00,
+      price: 190,
     }
    ], {});
   },

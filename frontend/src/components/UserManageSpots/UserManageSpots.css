@@ -5,9 +5,10 @@
     /* position: relative; */
     /* flex-wrap: wrap; */
 
-    border: 1px red solid;
     width: 350px;
     height: 350px;
+
+    border-bottom: 1px gray solid;
 }
 
 .user-spots-total-container {
@@ -18,7 +19,6 @@
     flex-wrap: wrap;
     width: 80vw;
     gap: 20px;
-    border: 2px solid green
 
 }
 
@@ -37,8 +37,9 @@
 
 #user-edit-button {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     background-color: rgb(167, 167, 167);
+    /* background-color: #91B247; */
     border-radius: 10px;
     font-weight: bold;
     padding: 10px;
@@ -60,6 +61,8 @@
     height: 25px;
     color: white;
     border-color: rgb(225, 88, 88);
+    width: 50%;
+    margin: auto;
 }
 
 #user-delete-button:hover {

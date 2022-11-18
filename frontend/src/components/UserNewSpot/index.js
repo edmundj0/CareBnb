@@ -119,7 +119,7 @@ export default function UserNewSpot() {
                     <div id="price-per-night">&nbsp;Price per night (USD)</div>
                     <input placeholder="Price per Night"
                         id="price"
-                        type='number' min='0' step='0.01'
+                        type='number' min='0'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                         required

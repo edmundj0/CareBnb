@@ -32,7 +32,7 @@ export default function UserManageSpots() {
                         <div className='user-spot-outer-container' key={`spot ${spot.id}`}>
                             <NavLink to={`/spots/${spot.id}`}>
                                 <div className='user-spot-container'>
-                                    <img src={spot.previewImage} alt="preview" className="user-spot-image" key={`img ${spot.previewImage}`}></img>
+                                    <img src={spot.previewImage} alt="Pic Not Available" className="user-spot-image" key={`img ${spot.previewImage}`}></img>
                                 </div>
                             </NavLink>
                             <div className="spot-name-edit">{spot.name}</div>

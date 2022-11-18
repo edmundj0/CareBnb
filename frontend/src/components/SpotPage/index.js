@@ -33,13 +33,12 @@ export default function SpotPage() {
     }, [dispatch, spotId])
 
 
-    if (!oneSpotRes) return (
-        <div>Sorry this Spot doesn't exist</div>
-    )
+    if (!oneSpotRes) return null
 
-    if (!oneSpotRes.SpotImages) return (
-        <div>Sorry this Spot doesn't exist</div>
-    )
+    if (!oneSpotRes.SpotImages) return null
+    // (
+    //     <div className="spot-not-found">Sorry this Spot doesn't exist</div>
+    // )
 
     let userAlreadyReviewed;
     if (currentUser && allReviewsArr.length > 0) {

@@ -34,7 +34,7 @@ function Navigation({ isLoaded }) {
       <div className="nav-right-side">
 
         {sessionUser ?
-        <NavLink to="/about-me/spots/new" style={{textDecoration: 'none'}}><span id='host-spot-button'>Host A Spot!</span></NavLink> : null
+        <NavLink to="/about-me/spots/new" style={{textDecoration: 'none'}}><span id='host-spot-button'>Become a Host</span></NavLink> : null
         }
 
         {/* thread in props, want profile button to be able to control whether modal pops or not */}
