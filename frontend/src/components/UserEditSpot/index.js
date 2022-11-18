@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getOneSpot, putSpot } from "../../store/spots";
-import "../UserNewSpot/UserNewSpot.css";
+import "./UserEditSpot.css";
 
 export default function UserEditSpot() {
     const [name, setName] = useState("");
@@ -91,71 +91,71 @@ export default function UserEditSpot() {
 
 
     return (
-        <div className='entire-create-page'>
+        <div className='entire-edit-page'>
             <h1>Update Spot</h1>
             <ul>
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <form onSubmit={onSubmit} className="create-form">
-                <div>
+            <form onSubmit={onSubmit} className="edit-spot-form">
+
                     <input required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
                         placeholder="Spot Name"></input>
-                </div>
-                <div>
+
+
                     <input required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description"
                         onChange={(e) => setAddress(e.target.value)}
                         value={address}
                         placeholder="Address"></input>
-                </div>
-                <div>
+
+
                     <input required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description"
                         onChange={(e) => setCity(e.target.value)}
                         value={city}
                         placeholder="City"></input>
-                </div>
-                <div>
+
+
                     <input required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description"
                         onChange={(e) => setState(e.target.value)}
                         value={state}
                         placeholder="State"></input>
-                </div>
-                <div>
+
+
                     <input required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description"
                         onChange={(e) => setCountry(e.target.value)}
                         value={country}
                         placeholder="Country"></input>
-                </div>
-                <div>
+
+                    <div id="price-per-night-edit">&nbsp;Price per night (USD)</div>
                     <input required
-                        type="number"
-                        className="create-form-input-description"
+                        type="number" min="0" step="0.01"
+                        className="edit-form-input-description"
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}
                         placeholder="Price"></input>
-                </div>
-                <div>
+
+
                     <textarea required
                         type="text"
-                        className="create-form-input-description"
+                        className="edit-form-input-description description-textarea"
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                         placeholder="Description"></textarea>
 
-                </div>
+
                 {/* <button>Cancel</button> */}
-                <button type="submit" className="create-submit-button">Save Changes</button>
+                <button type="submit" className="edit-submit-button">Save Changes</button>
             </form>
         </div>
     )

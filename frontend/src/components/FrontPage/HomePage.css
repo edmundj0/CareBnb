@@ -50,11 +50,9 @@
     flex-wrap: wrap;
     width: 80vw;
     gap: 20px;
-    border: 2px solid green
 }
 
 .spot-outer-container{
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     width: 350px;
@@ -62,7 +60,6 @@
 }
 
 .spot-container{
-    border: 2px pink solid;
     display: flex;
     flex-direction: column;
     width: 350px;
@@ -74,16 +71,46 @@
     height: 300px;
     width: auto;
     border-radius: 10px;
-    border: 2px solid gray;
     object-fit: cover;
+}
+
+.spot-description-details {
+    margin: 10px 5px;
 }
 
 .spot-description-first-row {
     display: flex;
     justify-content: space-between;
 
+
 }
 
 #city-and-state {
     color: black;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 16px;
+}
+
+#rating-text {
+    color: black;
+    font-weight: 550;
+    letter-spacing: -1px;
+}
+
+#spot-name-text {
+    color: gray;
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+#spot-price-text {
+    color: black;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-top: 10px;
+}
+
+#night-text {
+    font-weight: 500;
 }

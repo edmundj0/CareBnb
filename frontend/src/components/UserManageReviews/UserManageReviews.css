@@ -1,9 +1,15 @@
+* {
+    letter-spacing: -1px;
+}
+
 .user-review-outer-container{
     border: 1px solid gray;
     margin: 20px;
     padding: 20px;
     width: 50vw;
     border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .user-review-outer-container:hover{
@@ -16,4 +22,38 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.review-name-text {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.review-location-text {
+    color: gray;
+    font-size: 14px;
+}
+
+.review-description-text {
+    max-width: 20vw;
+}
+
+.user-review-right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.user-delete-review {
+    background-color: #FF053F;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    color: black;
+}
+
+.user-delete-review:hover {
+    cursor: pointer;
+    background-color: #AD1C34;
+    color: white;
 }

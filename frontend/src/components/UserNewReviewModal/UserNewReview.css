@@ -1,16 +1,25 @@
 .post-new-review-button {
-    background-color: #66A182;
+    background-color: #91B247;
     cursor: pointer;
     margin-top: 20px;
-    border: 3px solid #407d5c;
-    padding: 15px 10px;
+    border: none;
+    padding: 15px 15px;
     border-radius: 10px;
     font-size: large;
-    font-weight: 400;
+    font-weight: 500;
+}
+
+.form-elements-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-review-form-elements{
+    width: 100%;
 }
 
 .post-new-review-button:hover {
-    background-color: #2d6949;
+    background-color: #80A142;
 }
 
 .entire-review-create-page {
@@ -30,6 +39,11 @@
     box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
     border-radius: 10px;
     width: 100%;
+}
+
+.review-form-description {
+    height: 80px;
+    resize: none;
 }
 
 .review-form-text {

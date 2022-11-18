@@ -17,7 +17,7 @@ module.exports = {
       ownerId: 1,
       address: '120 Glacier Rte 1 Road',
       city: 'West Glacier',
-      state: 'MT',
+      state: 'Montana',
       country: 'United States',
       lat: 48.54,
       lng: -113.96,

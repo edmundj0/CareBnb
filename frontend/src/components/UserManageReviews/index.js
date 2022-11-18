@@ -26,7 +26,7 @@ export default function UserManageReviews() {
 
     //turn object into array
     const userReviewsArr = Object.values(userReviews).filter((review) => review.userId == currentUser.id)
-    
+
 
 
     return (isLoaded && (
@@ -39,14 +39,17 @@ export default function UserManageReviews() {
                         console.log(review, 'review objectttttttt')
                         return (
                             <div className='user-review-outer-container' key={`review ${review.id}`}>
-                                <div className="user-review-inner-container">
-                                    <div>{review?.Spot?.name}</div>
-                                    <div>{review?.Spot?.address}, {review?.Spot?.city}, {review?.Spot?.state}</div>
-                                    <div>{review?.review}</div>
+                                <div className="user-review-left-container">
+                                    <div className="review-name-text">{review?.Spot?.name}</div>
+                                    <div className="review-location-text">{review?.Spot?.address}, {review?.Spot?.city}, {review?.Spot?.state}</div>
+                                    <div className="review-description-text">{review?.review}</div>
                                 </div>
+                                <div className="user-review-right-container">
+                                    <div>★ {review?.stars}</div>
                                     <button className="user-delete-review"
-                                    onClick={()=> dispatch(deleteReview(review.id))}
-                                    >Delete</button>
+                                        onClick={() => dispatch(deleteReview(review.id))}>Delete Review
+                                    </button>
+                                </div>
                             </div>
                         )
                     })}

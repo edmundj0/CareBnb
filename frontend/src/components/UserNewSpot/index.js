@@ -61,7 +61,7 @@ export default function UserNewSpot() {
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
             <form onSubmit={onSubmit} className="create-form">
-                <div>
+
                     <input placeholder="Spot Name"
                         type={'text'}
                         value={name}
@@ -69,8 +69,8 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <input placeholder="Address"
                         type='text'
                         value={address}
@@ -78,8 +78,8 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <input placeholder="City"
                         type='text'
                         value={city}
@@ -87,8 +87,8 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <input placeholder="State"
                         type='text'
                         value={state}
@@ -96,8 +96,8 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <input placeholder="Country"
                         type='text'
                         value={country}
@@ -105,8 +105,8 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <input placeholder="Image URL"
                         type='text'
                         value={imgUrl}
@@ -114,19 +114,19 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <div id="price-per-night">&nbsp;Price per night (USD)</div>
                     <input placeholder="Price per Night"
                         id="price"
-                        type='number'
+                        type='number' min='0' step='0.01'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                         required
                         className="create-form-input"
                     />
-                </div>
-                <div>
+
+
                     <textarea placeholder="Description"
                         type='text'
                         value={description}
@@ -134,7 +134,7 @@ export default function UserNewSpot() {
                         required
                         className="create-form-input-description"
                     />
-                </div>
+
                 <button className="create-submit-button" type="submit">Host New Spot</button>
             </form>
             <div className="example-url-text">Example Image URL: https://drive.google.com/uc?export=view&id=1c-W-8Ypo7dshsHaQ5GBBYYhy3XvUKGgr</div>

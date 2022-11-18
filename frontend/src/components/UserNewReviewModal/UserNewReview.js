@@ -16,7 +16,7 @@ export default function UserNewReview() {
 
     const [errors, setErrors] = useState([]);
 
-    if(!currentUser) return <Redirect to="/" />
+    if (!currentUser) return <Redirect to="/" />
 
     const info = {
         review: reviewDescription,
@@ -27,12 +27,12 @@ export default function UserNewReview() {
         e.preventDefault()
 
         let newlyCreatedReview = await dispatch(postReview(info, spotId))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors)
-        })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors)
+            })
 
-        if(newlyCreatedReview){
+        if (newlyCreatedReview) {
             setErrors([])
             history.push('/about-me/reviews')
         }
@@ -48,30 +48,30 @@ export default function UserNewReview() {
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
 
-            <form onSubmit={onSubmit}>
-            <div>
-                <div className="review-form-text">Review Description</div>
-                <input placeholder="Review Description"
-                    type={'text'}
-                    value={reviewDescription}
-                    required
-                    onChange={e => setReviewDescription(e.target.value)}
-                    className="review-form-input"
-                />
-            </div>
-            <div>
-                <div className="review-form-text">Stars (1-5)</div>
-                <input placeholder="Stars"
-                    type='number' min='1' max='5'
-                    value={stars}
-                    required
-                    onChange={e => setStars(e.target.value)}
-                    className="review-form-input"
-                />
-            </div>
-            <div>
-                <button className="new-review-submit-button" type="submit">Post Review</button>
-            </div>
+            <form onSubmit={onSubmit} className='form-elements-form'>
+                <div className="add-review-form-elements">
+                    <div className="review-form-text">Review Description</div>
+                    <textarea placeholder="Review Description"
+                        type='text'
+                        value={reviewDescription}
+                        required
+                        onChange={e => setReviewDescription(e.target.value)}
+                        className="review-form-input review-form-description"
+                    />
+                </div>
+                <div className="add-review-form-elements">
+                    <div className="review-form-text">Stars (Enter number from 1-5)</div>
+                    <input placeholder="Stars"
+                        type='number' min='1' max='5'
+                        value={stars}
+                        required
+                        onChange={e => setStars(e.target.value)}
+                        className="review-form-input"
+                    />
+                </div>
+                <div className="add-review-form-elements">
+                    <button className="new-review-submit-button" type="submit">Post Review</button>
+                </div>
             </form>
         </div>
     )

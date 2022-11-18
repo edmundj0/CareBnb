@@ -1,20 +1,19 @@
 .entire-create-page {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 }
 
 .create-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
     padding: 20px;
+    width: 30vw;
 }
 
 .create-form-input {
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
     border: 2px solid lightgray;
@@ -26,10 +25,11 @@
 
 .create-form-input-description {
     resize: none;
-    padding: 20px 50px;
     border-radius: 10px;
     margin-bottom: 10px;
+    padding: 10px;
     border: 2px solid lightgray;
+    height: 100px;
 }
 
 .create-form-input-description:hover {
@@ -43,15 +43,17 @@
 
 .create-submit-button {
     padding: 20px;
-    background-color: lightblue;
+    background-color: #91B247;
     width: 100%;
+    border: none;
+
 
     margin-top: 10px;
 }
 
 .create-submit-button:hover {
     cursor: pointer;
-    background-color: #2C5F2DFF;
+    background-color: #80A142;
     font-weight: bold;
 }
 

@@ -55,7 +55,7 @@ export default function SpotPage() {
             </div>
             <div className="header-details">
                 <span>★ {oneSpotRes.avgStarRating ? Math.round((Number(oneSpotRes.avgStarRating) * 100) / 100).toFixed(2) : "No Reviews Yet"} &nbsp; · </span>
-                <span>&nbsp;Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
+                <span>&nbsp; <i class="fa-sharp fa-solid fa-medal"></i> Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
                 <div className="main-image-container">
@@ -75,8 +75,36 @@ export default function SpotPage() {
                             <div id='home-hosted-by'>{`Entire home hosted by ${oneSpotRes.Owner.firstName}`}</div>
                             <div id='contact-host'>Contact owner for more information</div>
                         </div>
-                       <i class="fa-solid fa-id-badge"></i>
+                        <i class="fa-solid fa-id-badge"></i>
                     </div>
+                    <div className="features-with-icons-container">
+                        <div className="superhost-feature-icon">
+                            <i class="fa-sharp fa-solid fa-medal feature-icon-img"></i>
+                            <div className="superhost-feature-icon-text">
+                                <div className="feature-icon-main-text">{`${oneSpotRes?.Owner?.firstName} is a Superhost`}</div>
+                                <div className="feature-icon-second-text">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+                            </div>
+                        </div>
+                        <div className="superhost-feature-icon">
+                            <i class="fa-solid fa-key feature-icon-img"></i>
+                            <div className="superhost-feature-icon-text">
+                                <div className="feature-icon-main-text">Great check-in experience</div>
+                                <div className="feature-icon-second-text">100% of recent guests gave the check-in process a 5-star rating.</div>
+                            </div>
+                        </div>
+                        <div className="superhost-feature-icon">
+                            <i class="fa-solid fa-calendar feature-icon-img"></i>
+                            <div className="superhost-feature-icon-text">
+                                <div className="feature-icon-main-text">Free cancellation for 48 hours </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="aircover-total-container">
+                        <img src="https://drive.google.com/uc?export=view&id=1hzjHhyuLFAJt3wu9ONjKj9ZrE5S817Hj" alt="aircover" className="air-cover-img"></img>
+                        <div className="air-cover-text">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+
+                    </div>
+
                     <div className="all-reviews-for-spot">
                         <SpotReviews spotId={spotId} />
                     </div>

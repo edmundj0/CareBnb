@@ -1,5 +1,8 @@
+* {
+    letter-spacing: -1px;
+}
+
 .all-images-container {
-    border: 1px green solid;
     display: flex;
     flex-wrap: wrap;
 
@@ -71,17 +74,26 @@
     font-size: 24px;
     font-weight: bold;
     padding-top: 20px;
+    letter-spacing: -1px;
 }
 
 .hosting-information {
     color: rgb(34, 34, 34);
     padding-top: 5px;
-    padding-bottom: 20px;
-    margin-bottom: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
     border-bottom: 1px black solid;
+    letter-spacing: -1px;
 
     display: flex;
 
+}
+
+.features-with-icons-container {
+    border-bottom: 1px black solid;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    padding-top: 30px;
 }
 
 
@@ -89,7 +101,7 @@
     position: relative;
     font-size: 50px;
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: 25px;
     margin-top: 20px;
 }
 
@@ -97,14 +109,49 @@
 .entire-container-below-images {
     display: flex;
     flex-direction: row;
+    letter-spacing: -1px;
 }
 
 .left-description-container {
-    flex-grow: 0.5;
+    flex-grow: 0.8;
     flex-wrap: wrap;
     width: 30vw;
 }
 
 .right-description-container {
     flex-grow: 1;
+}
+
+.superhost-feature-icon {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.feature-icon-img {
+    margin-right: 20px;
+}
+
+.feature-icon-main-text {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.feature-icon-second-text {
+    color: gray;
+    font-size: 14px;
+}
+
+.air-cover-img {
+    height: 26px;
+}
+
+.air-cover-text {
+    margin-top: 10px;
+    color: gray;
+}
+
+.aircover-total-container {
+    padding-bottom: 40px;
+    border-bottom: black 1px solid;
 }
