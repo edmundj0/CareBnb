@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='nav-total-container'>
-      <NavLink exact to="/"><img id='main-logo' src="https://drive.google.com/uc?export=view&id=1X2ba3DQCuOtMeBnLTHuvPFA5Z5T7tOcS" alt="logo-img" /></NavLink>
+      <NavLink exact to="/"><img id='main-logo' src="https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/Carebnb-logo.png" alt="logo-img" /></NavLink>
       <div className="nav-right-side">
 
         {sessionUser ?

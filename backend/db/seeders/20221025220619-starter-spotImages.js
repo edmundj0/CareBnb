@@ -44,177 +44,177 @@ module.exports = {
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?export=download&id=1G20pBJxaK8yd9dZFiNKA15OM2IaelJLK",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/olympic%20washington.jpg",
         preview: true
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?export=download&id=1y8X44Jxjy0m-9504lvb8x3IkyymeNbCh",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/olympicwashington2.jpg",
         preview: false
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?export=download&id=1NNtZRfGddJyYJ4WqR28ydDsXdshhZhVs",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/olympicwashington3.jpg",
         preview: false
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?export=download&id=14Oz9qmIlCX4XJfAamB0GU9A3TrNl9cDz",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/olympicwashington4.jpg",
         preview: false
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?export=download&id=1RS_8U94bkRLSeBYnx5BwhxdbdDSM_0Tg",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/olympicwashington5.jpg",
         preview: false
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?export=download&id=1Csg9GtKVNtcqXnEx6XPuUmSqINQTvop-",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/chickasawoklahoma.jpg",
         preview: true
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?export=download&id=1ruyQnOpYeyapuAAXzHMLO35etEg8wuKs",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/chickasaw%20oklahoma2.jpg",
         preview: false
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?export=download&id=1BMOmkHlPRjGF9Y7ASUYNWugiLcCx46cy",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/chickasaw%20oklahoma3.jpg",
         preview: false
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?export=download&id=1lvXyBqz2Grm5tp3mSViGLgTBB7ZiqR0l",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/chickasaw%20oklahoma4.jpg",
         preview: false
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?export=download&id=1S3t7nOnRMy7tAxDD_pCqZJW-xQ-kkmZs",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/chickasaw%20oklahoma5.jpg",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://drive.google.com/uc?export=download&id=1Xqj2cX6QVYcG4BAjNGoOhojrA39tPNtA",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/hotspringsarkansas.jpg",
         preview: true
       },
       {
         spotId: 4,
-        url: "https://drive.google.com/uc?export=download&id=1Ge3161xMrt75TYYcSa9KuBEh77fvnSXm",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/hotspringsarkansas2.jpg",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://drive.google.com/uc?export=download&id=1R3FHtY89OwoML9rG5lgR6YUDBqe-YAWl",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/hotspringsarkansas3.jpg",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://drive.google.com/uc?export=download&id=1oRv6TlJmDzw4Ul1MSb-c6TGE_UGY85qU",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/hotspringsarkansas4.jpg",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://drive.google.com/uc?export=download&id=1c7-NotvN4UgBHQjFanLp2S7dbLmIcEVH",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/hotspringsarkansas5.jpg",
         preview: false
       },
       {
         spotId: 5,
-        url: "https://drive.google.com/uc?export=download&id=1KmjLruRqHrZ9KLQP0kjtIxWrjeM143tq",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yellowstonewyoming.jpg",
         preview: true
       },
       {
         spotId: 5,
-        url: "https://drive.google.com/uc?export=download&id=1c9_hYqHnRbysZa-r9jVZigVY25gbWoTF",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yellowstonewyoming2.jpg",
         preview: false
       },
       {
         spotId: 5,
-        url: "https://drive.google.com/uc?export=download&id=1Lk1gISJnUSklzWRIi_7iURws62AW4N3f",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yellowstonewyoming3.jpg",
         preview: false
       },
       {
         spotId: 5,
-        url: "https://drive.google.com/uc?export=download&id=1WVKKbHsThqGoPe9Tki2P1U2JJRZnPVqc",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yellowstonewyoming4.jpg",
         preview: false
       },
       {
         spotId: 5,
-        url: "https://drive.google.com/uc?export=download&id=1ZTTB6g5SMmGuXsDVGHhFKEtBRTjr5Q8I",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yellowstonewyoming5.jpg",
         preview: false
       },
       {
         spotId: 6,
-        url: "https://drive.google.com/uc?export=download&id=13c8FjckuQuiYWSubQXsRnmw-dhvbUQeO",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yosemitecalifornia.jpg",
         preview: true
       },
       {
         spotId: 6,
-        url: "https://drive.google.com/uc?export=download&id=1qCoj3y0o7T_x5bN8lAfmz-LMNst4AuRM",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yosemitecalifornia2.jpg",
         preview: false
       },
       {
         spotId: 6,
-        url: "https://drive.google.com/uc?export=download&id=1yvQTx8I9atRYIavtHgYR_uGKvDieUXZ3",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yosemitecalifornia3.jpg",
         preview: false
       },
       {
         spotId: 6,
-        url: "https://drive.google.com/uc?export=download&id=1HK-KJFS9WxwLqkOcXK6hu0FAcfifznMQ",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yosemitecalifornia4.jpg",
         preview: false
       },
       {
         spotId: 6,
-        url: "https://drive.google.com/uc?export=download&id=1955Ii71B-2uw499ovahPsjo90eDcWjbU",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/yosemitecalifornia5.jpg",
         preview: false
       },
       {
         spotId: 7,
-        url: "https://drive.google.com/uc?export=download&id=1TwouZMgNuY4AZ347DDqEgZLkRN0uBF1l",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/grandcanyonarizona.jpg",
         preview: true
       },
       {
         spotId: 7,
-        url: "https://drive.google.com/uc?export=download&id=1WWhO5XouYIcjKSJ-jaiL0ak1TRRHwxX1",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/grandcanyonarizona2.jpg",
         preview: false
       },
       {
         spotId: 7,
-        url: "https://drive.google.com/uc?export=download&id=1zf7HkyRNFrMJ9S0JE1NSd0nWOzSvT2yR",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/grandcanyonarizona3.jpg",
         preview: false
       },
       {
         spotId: 7,
-        url: "https://drive.google.com/uc?export=download&id=17A7scGcc0xVyar5fTbC-c4GEufXue89w",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/grandcanyonarizona4.jpg",
         preview: false
       },
       {
         spotId: 7,
-        url: "https://drive.google.com/uc?export=download&id=1_WcmXxcGbz9lGsxvlVT89zZoVlxUQ7jR",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/grandcanyonarizona5.jpg",
         preview: false
       },
       {
         spotId: 8,
-        url: "https://drive.google.com/uc?export=download&id=1KGbjCYgwRuMz46-UeAelRJrpmOjEKh9K",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/mthoodoregon.jpg",
         preview: true
       },
       {
         spotId: 8,
-        url: "https://drive.google.com/uc?export=download&id=1p3y8RQ2YT459DZvp6ru-R5pY559fpjr4",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/mthoodoregon2.jpg",
         preview: false
       },
       {
         spotId: 8,
-        url: "https://drive.google.com/uc?export=download&id=11IlQ5lJWQUVMm3Q-v5xXUg__H66xirrF",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/mthoodoregon3.jpg",
         preview: false
       },
       {
         spotId: 8,
-        url: "https://drive.google.com/uc?export=download&id=1S8rBndvpJudp1jOGBvMk4a3wtgNd6Qr9",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/mthoodoregon4.jpg",
         preview: false
       },
       {
         spotId: 8,
-        url: "https://drive.google.com/uc?export=download&id=1Fj6VAWY1HlFisNwldlkkslrn-qHpKFD8",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/mthoodoregon5.jpg",
         preview: false
       },
 

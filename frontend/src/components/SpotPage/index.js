@@ -101,7 +101,7 @@ export default function SpotPage() {
                         </div>
                     </div>
                     <div className="aircover-total-container">
-                        <img src="https://drive.google.com/uc?export=view&id=1hzjHhyuLFAJt3wu9ONjKj9ZrE5S817Hj" alt="aircover" className="air-cover-img"></img>
+                        <img src="https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/aircover%20image.webp" alt="aircover" className="air-cover-img"></img>
                         <div className="air-cover-text">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
 
                     </div>
