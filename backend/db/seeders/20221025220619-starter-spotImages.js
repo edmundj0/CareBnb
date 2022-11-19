@@ -24,22 +24,22 @@ module.exports = {
       },
       {
         spotId: 1,
-        url: "https://drive.google.com/uc?export=download&id=1sMGgIMD6u3nKtCdisgNntGuyku50m7Mo",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/glaciermontana2.jpg",
         preview: false
       },
       {
         spotId: 1,
-        url: "https://drive.google.com/uc?export=download&id=1jUWlAcomGKM7kbJkJtvsgaMAB8tIWiei",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/glaciermontana3.jpg",
         preview: false
       },
       {
         spotId: 1,
-        url: "https://drive.google.com/uc?export=download&id=1VVlarVwnDo6kLATPrHfPEg3TAh6RIx0E",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/glaciermontana4.jpg",
         preview: false
       },
       {
         spotId: 1,
-        url: "https://drive.google.com/uc?export=download&id=1VA83ZKhqICkfJCvvD6dwgEZJs8soEgOJ",
+        url: "https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/glaciermontana5.jpg",
         preview: false
       },
       {
