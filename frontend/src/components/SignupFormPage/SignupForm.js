@@ -36,7 +36,7 @@ function SignupFormPage({ setShowModal }) {
     <div className="entire-signup-page">
       <form onSubmit={handleSubmit} className="signup-form">
         <ul>
-          {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+          {Object.values(errors).map((error, idx) => <li key={idx} className="signup-error-list">{error}</li>)}
         </ul>
         <div className="signup-header">Sign Up</div>
         <div>

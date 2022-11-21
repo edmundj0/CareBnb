@@ -58,7 +58,7 @@ export default function UserNewSpot() {
         <div className='entire-create-page'>
             <h1 className="create-header">Create New Spot</h1>
             <ul>
-                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                {Object.values(errors).map((error, idx) => <li key={idx} className="newspot-error-list">{error}</li>)}
             </ul>
             <form onSubmit={onSubmit} className="create-form">
 

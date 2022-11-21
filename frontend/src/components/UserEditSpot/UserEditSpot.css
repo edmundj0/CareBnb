@@ -55,3 +55,7 @@
     background-color: #80A142;
     font-weight: bold;
 }
+
+.editspot-error-list {
+    color: red;
+}

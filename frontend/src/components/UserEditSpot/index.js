@@ -94,7 +94,7 @@ export default function UserEditSpot() {
         <div className='entire-edit-page'>
             <h1>Update Spot</h1>
             <ul>
-                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                {Object.values(errors).map((error, idx) => <li key={idx} className="editspot-error-list">{error}</li>)}
             </ul>
             <form onSubmit={onSubmit} className="edit-spot-form">
 
