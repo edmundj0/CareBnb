@@ -113,6 +113,7 @@ export default function UserNewSpot() {
                         onChange={e => setImgUrl(e.target.value)}
                         required
                         className="create-form-input"
+                        maxLength="255"
                     />
 
 
