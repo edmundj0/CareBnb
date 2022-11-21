@@ -11,18 +11,27 @@ const { handleValidationErrors } = require('../../utils/validation');
 const validateSignup = [
   check('firstName')
     .exists({ checkFalsy: true })
-    .withMessage('First Name is required'),
+    .withMessage('First Name is required')
+    .isLength({ min: 0 })
+    .isLength({ max: 255 })
+    .withMessage("First Name must be 255 characters or less."),
   check('lastName')
     .exists({ checkFalsy: true })
-    .withMessage('Last Name is required'),
+    .withMessage('Last Name is required')
+    .isLength({ min: 0 })
+    .isLength({ max: 255 })
+    .withMessage("Last name must be 255 characters or less."),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage('Please provide a valid email.')
+    .isLength({ max: 255 })
+    .withMessage("Email must be 255 characters or less."),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .isLength({ max: 50})
+    .withMessage('Please provide a username with at least 4 characters, and under 50 characters.'),
   check('username')
     .not()
     .isEmail()
@@ -30,7 +39,8 @@ const validateSignup = [
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
+    .isLength({ max: 255 })
+    .withMessage('Password must be 6 characters or more, but under 255 characters.'),
   handleValidationErrors
 ];
 

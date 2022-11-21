@@ -27,16 +27,28 @@ const checkValidation = (req, res, next) => {
 const validateNewSpot = [
     check('address')
         .exists({ checkFalsy: true })
-        .withMessage('Street address is required'),
+        .withMessage('Street address is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("Street address must be 255 characters or less"),
     check('city')
         .exists({ checkFalsy: true })
-        .withMessage('City is required'),
+        .withMessage('City is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("City must be 255 characters or less"),
     check('state')
         .exists({ checkFalsy: true })
-        .withMessage('State is required'),
+        .withMessage('State is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("State must be 255 characters or less"),
     check('country')
         .exists({ checkFalsy: true })
-        .withMessage('Country is required'),
+        .withMessage('Country is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("Country must be 255 characters or less"),
     check('lat')
         .exists({ checkFalsy: true })
         .withMessage('Latitude is not valid'),
@@ -50,7 +62,10 @@ const validateNewSpot = [
         .withMessage('Name must be less than 50 characters'),
     check('description')
         .exists({ checkFalsy: true })
-        .withMessage('description is required'),
+        .withMessage('description is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("Description must be 255 characters or less"),
     check('price')
         .exists({ checkFalsy: true })
         .withMessage('Price per day is required'),
@@ -81,7 +96,10 @@ const checkSpotAndOwnership = async (req, res, next) => {
 const validateNewReview = [
     check('review')
         .exists({ checkFalsy: true })
-        .withMessage('Review text is required'),
+        .withMessage('Review text is required')
+        .isLength({ min: 0 })
+        .isLength({ max: 255 })
+        .withMessage("Review must be 255 characters or less"), //postgres validation
     check('stars')
         .exists({ checkFalsy: true })
         .withMessage('Stars must be an integer from 1 to 5')
