@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { getAllSpots, getOneSpot } from "../../store/spots";
 import SpotReviews from "../SpotReviews";
 import UserNewReviewModal from "../UserNewReviewModal";
+import Bookings from "./Bookings/Bookings";
 import './SpotPage.css'
 
 export default function SpotPage() {
@@ -130,6 +131,7 @@ export default function SpotPage() {
 
                     <div className="feature-coming-soon">
                         Booking Feature Below Coming Soon!
+                        <Bookings />
                     </div>
                 </div>
 
