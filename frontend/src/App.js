@@ -10,6 +10,7 @@ import UserManageSpots from "./components/UserManageSpots";
 import UserEditSpot from "./components/UserEditSpot";
 import UserNewSpot from "./components/UserNewSpot";
 import UserManageReviews from "./components/UserManageReviews";
+import UserManageBookings from "./components/UserManageBookings/UserManageBookings";
 
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path= "/about-me/reviews">
             <UserManageReviews />
+          </Route>
+          <Route exact path="/about-me/bookings">
+            <UserManageBookings />
           </Route>
           <Route>
             <h1>404 Not Found</h1>

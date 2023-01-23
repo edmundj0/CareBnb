@@ -96,11 +96,9 @@ const reviewsReducer = (state = initialState, action) => {
                 userAllReviewsReturnObj[review.id] = review
             })
             newState.userReviews = userAllReviewsReturnObj
-            console.log(newState, 'newState reviews')
             return newState
         case CREATE_REVIEW:
             newState = {...state, userReviews: {...state.userReviews}, spotReviews: {...state.spotReviews}}
-            console.log(action.addedReview, 'action.addedReview')
             newState.spotReviews[action.addedReview.id] = action.addedReview
             newState.userReviews[action.addedReview.id] = action.addedReview
             return newState
