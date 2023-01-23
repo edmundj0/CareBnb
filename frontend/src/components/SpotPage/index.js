@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { getOneSpot } from "../../store/spots";
+import { getAllSpots, getOneSpot } from "../../store/spots";
 import SpotReviews from "../SpotReviews";
 import UserNewReviewModal from "../UserNewReviewModal";
 import './SpotPage.css'
@@ -32,6 +32,7 @@ export default function SpotPage() {
     useEffect(() => {
         dispatch(getOneSpot(spotId))
             .then(() => setIsLoaded(true))
+        dispatch(getAllSpots())
     }, [dispatch, spotId, hasSubmitted])
 
 
@@ -56,7 +57,7 @@ export default function SpotPage() {
             </div>
             <div className="header-details">
                 <span>★ {oneSpotRes.avgStarRating ? ((Number(oneSpotRes.avgStarRating) * 100) / 100)?.toFixed(2) : "No Reviews Yet"} &nbsp; · </span>
-                <span>&nbsp; <i class="fa-sharp fa-solid fa-medal"></i> Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
+                <span>&nbsp; <i className="fa-sharp fa-solid fa-medal"></i> Superhost &nbsp;·&nbsp; {`${oneSpotRes.city}, ${oneSpotRes.state}, ${oneSpotRes.country}`}</span>
             </div>
             <div className="all-images-container">
                 <div className="main-image-container">
@@ -76,25 +77,25 @@ export default function SpotPage() {
                             <div id='home-hosted-by'>{`Entire home hosted by ${oneSpotRes.Owner.firstName}`}</div>
                             <div id='contact-host'>Contact owner for more information</div>
                         </div>
-                        <i class="fa-solid fa-id-badge"></i>
+                        <i className="fa-solid fa-id-badge"></i>
                     </div>
                     <div className="features-with-icons-container">
                         <div className="superhost-feature-icon">
-                            <i class="fa-sharp fa-solid fa-medal feature-icon-img"></i>
+                            <i className="fa-sharp fa-solid fa-medal feature-icon-img"></i>
                             <div className="superhost-feature-icon-text">
                                 <div className="feature-icon-main-text">{`${oneSpotRes?.Owner?.firstName} is a Superhost`}</div>
                                 <div className="feature-icon-second-text">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
                             </div>
                         </div>
                         <div className="superhost-feature-icon">
-                            <i class="fa-solid fa-key feature-icon-img"></i>
+                            <i className="fa-solid fa-key feature-icon-img"></i>
                             <div className="superhost-feature-icon-text">
                                 <div className="feature-icon-main-text">Great check-in experience</div>
                                 <div className="feature-icon-second-text">100% of recent guests gave the check-in process a 5-star rating.</div>
                             </div>
                         </div>
                         <div className="superhost-feature-icon">
-                            <i class="fa-solid fa-calendar feature-icon-img"></i>
+                            <i className="fa-solid fa-calendar feature-icon-img"></i>
                             <div className="superhost-feature-icon-text">
                                 <div className="feature-icon-main-text">Free cancellation for 48 hours </div>
                             </div>

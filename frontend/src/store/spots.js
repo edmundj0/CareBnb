@@ -146,10 +146,8 @@ const spotsReducer = (state = initialState, action) => {
             //need to override nested objects to generate new references in memory
             newState = { ...state, individualSpot: { ...state.individualSpot }, aggregateSpots: { ...state.aggregateSpots } }
             newState.individualSpot = action.oneSpot
-            console.log(newState, 'newState')
             return newState
         case EDIT_SPOT:
-            console.log(state, 'THISISTHESTATE')
             newState = { ...state, individualSpot: { ...state.individualSpot }, aggregateSpots: { ...state.aggregateSpots } }
             newState.individualSpot = action.editedSpot
             newState.aggregateSpots[action.editedSpot.id] = action.editedSpot //reflect update in newState for all spots

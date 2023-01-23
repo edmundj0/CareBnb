@@ -6,7 +6,7 @@ import './Navigation.css';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupFormPage from '../SignupFormPage/SignupForm';
-import SearchBar from './SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
