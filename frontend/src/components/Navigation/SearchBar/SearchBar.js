@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom"
+import "./SearchBar.css"
 
 export default function SearchBar() {
     const [searchWord, setSearchWord] = useState("")
@@ -15,9 +17,6 @@ export default function SearchBar() {
             return (spot.city.toLowerCase().includes(val.toLowerCase()) || spot.state.toLowerCase().includes(val.toLowerCase()) || spot.name.toLowerCase().includes(val.toLowerCase()) || spot.address.toLowerCase().includes(val.toLowerCase()) || spot.country.toLowerCase().includes(val.toLowerCase()))
         })
 
-        console.log(res, 'res')
-        console.log(searchResult, 'searchResult')
-        console.log(searchWord, 'searchWord')
 
         if (val === "") {
             setSearchResult([])
@@ -25,31 +24,39 @@ export default function SearchBar() {
             setSearchResult(res)
         }
 
+    }
 
-
-
+    const clearSearch = () => {
+        setSearchWord("")
+        setSearchResult([])
     }
 
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Start Search"
-                value={searchWord}
-                onChange={handleSearch}>
-            </input>
+        <div className="search-entire-container">
+            <div className="search-input-container">
+                <input
+                    type="text"
+                    placeholder="Search for a Spot"
+                    value={searchWord}
+                    onChange={handleSearch}
+                    className="search-input-box">
+                </input>
+                {searchWord === "" ? <i className="fa-solid fa-magnifying-glass"></i> : <i className="fa-solid fa-xmark" onClick={clearSearch}></i>}
+            </div>
             {searchResult.length > 0 && (
                 <div className="search-result-container">
                     {searchResult.slice(0, 10).map(spot => {
                         return (
-                            <div key={`searchspot ${spot.id}`}>{spot.name}</div>
+                            <div key={`searchspot ${spot.id}`}>
+                                <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: "none", color: "black" }} onClick={() => { setSearchResult([]); setSearchWord("") }}>{spot.name}</NavLink>
+                            </div>
                         )
                     })}
                 </div>
             )}
             {searchResult.length === 0 && searchWord !== "" && (
-                <div>No Results Found</div>
+                <div className="search-result-container">No Results Found</div>
             )}
         </div>
     )

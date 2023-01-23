@@ -1,0 +1,40 @@
+.search-result-container {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    border: 1px gray solid;
+}
+
+.search-entire-container {
+    border-radius: 20px;
+    border: 1px lightgray solid;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.search-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-input-box {
+    border: none;
+}
+
+.search-input-box:focus {
+    outline: none;
+}
+
+.fa-xmark {
+    cursor: pointer;
+    padding: 7px;
+}
+
+.fa-magnifying-glass {
+    color: white;
+    background-color: #95bb72;
+    border-radius: 50%;
+    padding: 7px;
+    cursor: pointer;
+}
