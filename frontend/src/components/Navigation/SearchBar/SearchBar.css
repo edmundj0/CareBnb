@@ -3,6 +3,7 @@
     z-index: 1;
     background-color: white;
     border: 1px gray solid;
+    width: 20%;
 }
 
 .search-entire-container {
@@ -37,4 +38,33 @@
     border-radius: 50%;
     padding: 7px;
     cursor: pointer;
+}
+
+.navlink-container-search {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.navlink-container-search:hover {
+    background-color: lightgray;
+}
+
+.search-result-text-container {
+    margin-left: 5px;
+}
+
+#search-result-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#search-result-spot-name {
+    font-size: 16px;
+}
+
+#search-result-location {
+    color: gray;
+    font-size: 14px;
 }

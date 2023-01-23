@@ -17,6 +17,8 @@ export default function SearchBar() {
             return (spot.city.toLowerCase().includes(val.toLowerCase()) || spot.state.toLowerCase().includes(val.toLowerCase()) || spot.name.toLowerCase().includes(val.toLowerCase()) || spot.address.toLowerCase().includes(val.toLowerCase()) || spot.country.toLowerCase().includes(val.toLowerCase()))
         })
 
+        console.log(res, 'res')
+
 
         if (val === "") {
             setSearchResult([])
@@ -49,7 +51,14 @@ export default function SearchBar() {
                     {searchResult.slice(0, 10).map(spot => {
                         return (
                             <div key={`searchspot ${spot.id}`}>
-                                <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: "none", color: "black" }} onClick={() => { setSearchResult([]); setSearchWord("") }}>{spot.name}</NavLink>
+                                <NavLink to={`/spots/${spot.id}`} style={{ textDecoration: "none", color: "black" }} onClick={() => { setSearchResult([]); setSearchWord("") }} className="navlink-container-search">
+                                    <img id="search-result-img" src={spot.previewImage}></img>
+                                    <div className="search-result-text-container">
+                                        <div id="search-result-spot-name">{spot.name}</div>
+                                        <div id="search-result-location">in {spot.city}, {spot.state}</div>
+                                    </div>
+
+                                </NavLink>
                             </div>
                         )
                     })}
