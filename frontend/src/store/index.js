@@ -9,7 +9,7 @@ import spotsReducer from './spots';
 const rootReducer = combineReducers({
     session: sessionReducer,
     spot: spotsReducer,
-    review: reviewsReducer
+    review: reviewsReducer,
     booking: bookingsReducer
 });
 
