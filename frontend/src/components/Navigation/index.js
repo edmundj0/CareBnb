@@ -6,6 +6,7 @@ import './Navigation.css';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupFormPage from '../SignupFormPage/SignupForm';
+import SearchBar from './SearchBar/SearchBar';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -30,11 +31,16 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='nav-total-container'>
-      <NavLink exact to="/"><img id='main-logo' src="https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/Carebnb-logo.png" alt="logo-img" /></NavLink>
+      <div className='nav-left-side'>
+        <NavLink exact to="/"><img id='main-logo' src="https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/Carebnb-logo.png" alt="logo-img" /></NavLink>
+      </div>
+      <div className='nav-search-bar-container'>
+        <SearchBar />
+      </div>
       <div className="nav-right-side">
 
         {sessionUser ?
-        <NavLink to="/about-me/spots/new" style={{textDecoration: 'none'}}><span id='host-spot-button'>Become a Host</span></NavLink> : null
+          <NavLink to="/about-me/spots/new" style={{ textDecoration: 'none' }}><span id='host-spot-button'>Become a Host</span></NavLink> : null
         }
 
         {/* thread in props, want profile button to be able to control whether modal pops or not */}
