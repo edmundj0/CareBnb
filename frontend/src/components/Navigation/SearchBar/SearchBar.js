@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { getAllSpots } from "../../../store/spots"
 import "./SearchBar.css"
 
 export default function SearchBar() {
+    const dispatch = useDispatch()
     const [searchWord, setSearchWord] = useState("")
     const [searchResult, setSearchResult] = useState([])
     const allSpots = useSelector(state => state.spot.aggregateSpots)
@@ -42,6 +44,7 @@ export default function SearchBar() {
                     placeholder="Search for a Spot"
                     value={searchWord}
                     onChange={handleSearch}
+                    onClick={() => dispatch(getAllSpots())}
                     className="search-input-box">
                 </input>
                 {searchWord === "" ? <i className="fa-solid fa-magnifying-glass"></i> : <i className="fa-solid fa-xmark" onClick={clearSearch}></i>}
