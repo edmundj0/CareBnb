@@ -131,7 +131,7 @@ export default function SpotPage() {
 
                     <div className="feature-coming-soon">
                         Booking Feature Below Coming Soon!
-                        <Bookings />
+                        <Bookings spotId={spotId} />
                     </div>
                 </div>
 
