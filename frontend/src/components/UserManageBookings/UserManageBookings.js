@@ -22,7 +22,7 @@ export default function UserManageBookings() {
             {userBookingsArr.length > 0 ? (userBookingsArr.map(booking => {
                 return (
                     <div key={`booking ${booking.id}`}>
-                        {booking}
+                        {booking.id}, {booking.startDate} {booking.endDate}
                     </div>
                 )
             })) : <div>No bookings yet</div>}
