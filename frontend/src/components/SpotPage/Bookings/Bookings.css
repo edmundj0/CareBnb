@@ -1,3 +1,8 @@
 .booking-calendar-modal {
     position: absolute;
+    right: 10%;
+}
+
+.booking-entire-container {
+    border: 1px red solid;
 }
