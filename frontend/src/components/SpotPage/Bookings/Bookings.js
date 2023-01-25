@@ -82,7 +82,6 @@ export default function Bookings({ spotId, oneSpotRes }) {
         endDate: endDate
     }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
-import { getUserBookings } from "../../store/booking";
+import { deleteBooking, getUserBookings } from "../../store/booking";
 import './UserManageBookings.css'
 
 export default function UserManageBookings() {
@@ -16,28 +16,67 @@ export default function UserManageBookings() {
 
     if (!currentUser) return <Redirect to="/" />
 
-    const userBookingsArr = Object.values(userBookings)
-    console.log(userBookingsArr)
+    const userBookingsArrUnsorted = Object.values(userBookings)
+
+    const userBookingsFuture = userBookingsArrUnsorted.filter(booking => new Date().toISOString().split('T')[0] < booking.startDate)
+    const userBookingsPast = userBookingsArrUnsorted.filter(booking => new Date().toISOString().split('T')[0] >= booking.startDate) //consider booking that starts today as past
+
+    userBookingsFuture.sort((a,b) => a.startDate < b.startDate ? -1 : 1)
+    userBookingsPast.sort((a,b) => a.startDate > b.startDate ? -1: 1)
+    // console.log(userBookingsFuture, 'future')
+    // console.log(userBookingsPast, 'past')
+    // console.log(userBookingsArrUnsorted)
+
+
+    const userBookingsArr = userBookingsArrUnsorted.sort(function (a, b) {
+        let x = a.startDate < b.startDate ? -1 : 1;
+        return x
+    })
 
     return (isLoaded && (
         <div>
             <h2 className="manage-bookings-header">Manage My Bookings</h2>
             <div className="bookings-entire-container">
-            {userBookingsArr.length > 0 ? (userBookingsArr.map(booking => {
-                return (
-                    <NavLink to={`/spots/${booking.Spot.id}`} key={`booking ${booking.id}`} className="each-booking-container" style={{textDecoration: 'none', color: "black"}}>
-                        <div className="each-booking-left-container">
-                            <div className="each-booking-name">{booking.Spot.name}</div>
-                            <div className="each-booking-dates">{booking.startDate} - {booking.endDate}</div>
-                            <div className="each-booking-address">{booking.Spot.address}</div>
-                            <div className="each-booking-location">{booking.Spot.city}, {booking.Spot.state}</div>
+                <h4>Upcoming Bookings</h4>
+                {userBookingsFuture.length > 0 ? (userBookingsFuture.map(booking => {
+                    return (
+                        <div className="each-booking-include-nav-container" key={`booking ${booking.id}`}>
+                            <NavLink to={`/spots/${booking.Spot.id}`} className="each-booking-container" style={{ textDecoration: 'none', color: "black" }}>
+                                <div className="each-booking-left-container">
+                                    <div className="each-booking-name">{booking.Spot.name}</div>
+                                    <div className="each-booking-dates">{booking.startDate} - {booking.endDate}</div>
+                                    <div className="each-booking-address">{booking.Spot.address}</div>
+                                    <div className="each-booking-location">{booking.Spot.city}, {booking.Spot.state}</div>
+                                </div>
+                                <div className="each-booking-right-container">
+                                    <img src={booking.Spot.previewImg} alt='spot' className="each-booking-img"></img>
+                                </div>
+                            </NavLink>
+                            {new Date().toISOString().split('T')[0] < booking.startDate ? <button className="delete-booking-button" onClick={() => dispatch(deleteBooking(booking.id))}><i className="fa-solid fa-trash-can"></i></button> : null}
+                            {/* only show delete button if trip is in the future */}
                         </div>
-                        <div className="each-booking-right-container">
-                            <img src={booking.Spot.previewImg} alt='spot' className="each-booking-img"></img>
+                    )
+                })) : <div>No bookings yet</div>}
+                <h4>Past Bookings</h4>
+                {userBookingsPast.length > 0 ? (userBookingsPast.map(booking => {
+                    return (
+                        <div className="each-booking-include-nav-container" key={`booking ${booking.id}`}>
+                            <NavLink to={`/spots/${booking.Spot.id}`} className="each-booking-container" style={{ textDecoration: 'none', color: "black" }}>
+                                <div className="each-booking-left-container">
+                                    <div className="each-booking-name">{booking.Spot.name}</div>
+                                    <div className="each-booking-dates">{booking.startDate} - {booking.endDate}</div>
+                                    <div className="each-booking-address">{booking.Spot.address}</div>
+                                    <div className="each-booking-location">{booking.Spot.city}, {booking.Spot.state}</div>
+                                </div>
+                                <div className="each-booking-right-container">
+                                    <img src={booking.Spot.previewImg} alt='spot' className="each-booking-img"></img>
+                                </div>
+                            </NavLink>
+                            {/* {new Date().toISOString().split('T')[0] < booking.startDate ? <button className="delete-booking-button" onClick={() => dispatch(deleteBooking(booking.id))}><i className="fa-solid fa-trash-can"></i></button> : null}
+                    only show delete button if trip is in the future */}
                         </div>
-                    </NavLink>
-                )
-            })) : <div>No bookings yet</div>}
+                    )
+                })) : <div>No bookings yet</div>}
             </div>
         </div>
     )

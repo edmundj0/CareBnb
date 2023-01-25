@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_USER_BOOKINGS = "/bookings/GET_ALL_USER_BOOKINGS"
 const CREATE_NEW_BOOKING = "/bookings/CREATE_NEW_BOOKING"
+const DELETE_BOOKING = "/bookings/DELETE_BOOKING"
 
 //action creators
 const loadUserBookings = (userBooked) => ({
@@ -12,6 +13,11 @@ const loadUserBookings = (userBooked) => ({
 const postBooking = (newBooking) => ({
     type: CREATE_NEW_BOOKING,
     newBooking
+})
+
+const delBooking = (bookingId) => ({
+    type: DELETE_BOOKING,
+    bookingId
 })
 
 
@@ -40,6 +46,15 @@ export const createNewBooking = (info, spotId) => async (dispatch) => {
 
 }
 
+export const deleteBooking = (bookingId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok) {
+        dispatch(delBooking(bookingId))
+    }
+}
+
 
 
 //reducer
@@ -61,11 +76,20 @@ const bookingsReducer = (state = initialState, action) => {
         case CREATE_NEW_BOOKING:
             newState = {
                 ...state,
-                userBookings: {},
+                userBookings: {...state.singleBooking},
                 spotBookings: {...state.spotBookings},
                 singleBooking: {...state.singleBooking}
             }
             newState.userBookings[action.newBooking.id] = action.newBooking
+            return newState
+        case DELETE_BOOKING:
+            newState = {
+                ...state,
+                userBookings: {...state.userBookings},
+                spotBookings: {...state.spotBookings},
+                singleBooking: {...state.singleBooking}
+            }
+            delete newState.userBookings[action.bookingId]
             return newState
         default:
             return state;
