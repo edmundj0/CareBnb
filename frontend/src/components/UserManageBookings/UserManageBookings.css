@@ -1,0 +1,14 @@
+.manage-bookings-header {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.each-booking-container {
+    border: 1px red solid;
+    margin-bottom: 20px;
+}
+
+.bookings-entire-container {
+    width: 70%;
+    margin: auto;
+}
