@@ -6,14 +6,18 @@
 }
 
 .booking-entire-container {
-    border: 1px red solid;
+    margin-left: 50px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px grey;
+    padding: 20px;
+    position: sticky;
 }
 
 .reserve-booking-button {
     width: 100%;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 20px;
 
     border-radius: 5px;
@@ -88,4 +92,8 @@
     margin-bottom: 10px;
     font-size: 14px;
     color: gray;
+}
+
+.booking-errors {
+    color: #ff4136
 }

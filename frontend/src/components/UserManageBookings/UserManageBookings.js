@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { getUserBookings } from "../../store/booking";
 import './UserManageBookings.css'
 
@@ -25,17 +25,17 @@ export default function UserManageBookings() {
             <div className="bookings-entire-container">
             {userBookingsArr.length > 0 ? (userBookingsArr.map(booking => {
                 return (
-                    <div key={`booking ${booking.id}`} className="each-booking-container">
+                    <NavLink to={`/spots/${booking.Spot.id}`} key={`booking ${booking.id}`} className="each-booking-container" style={{textDecoration: 'none', color: "black"}}>
                         <div className="each-booking-left-container">
-                            <div>{booking.Spot.name}</div>
-                            <div>{booking.startDate} - {booking.endDate}</div>
-                            <div>{booking.Spot.address}</div>
-                            <div>{booking.Spot.city}, {booking.Spot.state}</div>
+                            <div className="each-booking-name">{booking.Spot.name}</div>
+                            <div className="each-booking-dates">{booking.startDate} - {booking.endDate}</div>
+                            <div className="each-booking-address">{booking.Spot.address}</div>
+                            <div className="each-booking-location">{booking.Spot.city}, {booking.Spot.state}</div>
                         </div>
                         <div className="each-booking-right-container">
-
+                            <img src={booking.Spot.previewImg} alt='spot' className="each-booking-img"></img>
                         </div>
-                    </div>
+                    </NavLink>
                 )
             })) : <div>No bookings yet</div>}
             </div>

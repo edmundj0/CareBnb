@@ -3,11 +3,13 @@ import { DateRange, DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { createNewBooking } from '../../../store/booking';
 import './Bookings.css'
 
 export default function Bookings({ spotId, oneSpotRes }) {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [showCalendar, setShowCalendar] = useState(false)
     const [startDate, setStartDate] = useState("") //stored as format ready to send to backend
     const [endDate, setEndDate] = useState("")
@@ -95,6 +97,8 @@ export default function Bookings({ spotId, oneSpotRes }) {
 
         if (newBooking) {
             setErrors([])
+
+            history.push("/about-me/bookings")
         }
 
     }
@@ -102,66 +106,71 @@ export default function Bookings({ spotId, oneSpotRes }) {
 
 
     return (
-        <div className='booking-entire-container'>
-            <div>
-                {errors && (
-                    <ul className="booking-errors">
-                        {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-                )}
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className='checkin-out-container'>
-                    <div className='checkin-out-inner-left-container'>
-                        <div className='checkin-out-text'>CHECK IN</div>
-                        <input
-                            placeholder='Select A Date'
-                            onClick={() => setShowCalendar(showCalendar => !showCalendar)}
-                            value={displayDateFromDispatch(startDate)}
-                            className="checkin-out-input"
-                            readOnly>
-                        </input>
+        <div>
+            {oneSpotRes?.Owner?.id !== currentUser.id ?
+                (<div className='booking-entire-container'>
+                    <h4>Make a Reservation</h4>
+                    <div>
+                        {errors && (
+                            <ul className="booking-errors">
+                                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                            </ul>
+                        )}
                     </div>
-                    <div className='checkin-out-inner-right-container'>
-                        <div className='checkin-out-text'>CHECK OUT</div>
-                        <input
-                            placeholder='Select A Date'
-                            onClick={() => setShowCalendar(showCalendar => !showCalendar)}
-                            value={displayDateFromDispatch(endDate)}
-                            className="checkin-out-input"
-                            readOnly>
-                        </input>
-                    </div>
-                </div>
-                {showCalendar &&
-                    <div className='booking-calendar-modal ' ref={calendarContainer}>
-                        <DateRange
-                            ranges={[selectionRange]}
-                            rangeColors={["#95bb72"]}
-                            onChange={handleSelect}
-                            showDateDisplay={false}
-                            months={2}
-                            minDate={new Date()}
-                            direction="horizontal"
-                            preventSnapRefocus={true}
-                        />
-                        <div><button onClick={() => setShowCalendar(false)}>Ok</button></div>
-                    </div>
-                }
-                {currentUser ? <div><button type='submit' className='reserve-booking-button'>Reserve</button></div> : <div><button type='submit' disabled className='reserve-booking-button-disabled'>Login to Book</button></div>}
-                {startDate ? <div className='no-charge-text'>You won't be charged yet</div> : <div>Select Dates to View Est. Cost</div>}
-            </form>
-            {startDate && <div className='price-calculation-container'>
-                <div className='price-calculation-row'>
-                    <span>${oneSpotRes.price}/night * {(rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} nights</span>
-                    <span>${oneSpotRes.price * (rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} </span>
-                </div>
-                <div className='price-calculation-row'><span>Cleaning Fee</span><span>$65</span></div>
-                <div className='price-calculation-row'><span>Service Fee</span><span>$35</span></div>
-                <div className='price-calculation-row price-calculation-total'><span>Total:</span><span>${100 + oneSpotRes.price * (rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)}</span></div>
+                    <form onSubmit={handleSubmit}>
+                        <div className='checkin-out-container'>
+                            <div className='checkin-out-inner-left-container'>
+                                <div className='checkin-out-text'>CHECK IN</div>
+                                <input
+                                    placeholder='Select A Date'
+                                    onClick={() => {setShowCalendar(showCalendar => !showCalendar); setErrors([])}}
+                                    value={displayDateFromDispatch(startDate)}
+                                    className="checkin-out-input"
+                                    readOnly>
+                                </input>
+                            </div>
+                            <div className='checkin-out-inner-right-container'>
+                                <div className='checkin-out-text'>CHECK OUT</div>
+                                <input
+                                    placeholder='Select A Date'
+                                    onClick={() => {setShowCalendar(showCalendar => !showCalendar); setErrors([])}}
+                                    value={displayDateFromDispatch(endDate)}
+                                    className="checkin-out-input"
+                                    readOnly>
+                                </input>
+                            </div>
+                        </div>
+                        {showCalendar &&
+                            <div className='booking-calendar-modal ' ref={calendarContainer}>
+                                <DateRange
+                                    ranges={[selectionRange]}
+                                    rangeColors={["#95bb72"]}
+                                    onChange={handleSelect}
+                                    showDateDisplay={false}
+                                    months={2}
+                                    minDate={new Date()}
+                                    direction="horizontal"
+                                    preventSnapRefocus={true}
+                                />
+                                <div><button onClick={() => setShowCalendar(false)}>Ok</button></div>
+                            </div>
+                        }
+                        {currentUser ? <div><button type='submit' className='reserve-booking-button'>Reserve</button></div> : <div><button type='submit' disabled className='reserve-booking-button-disabled'>Login to Book</button></div>}
+                        {startDate ? <div className='no-charge-text'>You won't be charged yet</div> : <div>Select Dates to View Est. Cost</div>}
+                    </form>
+                    {startDate && <div className='price-calculation-container'>
+                        <div className='price-calculation-row'>
+                            <span>${oneSpotRes.price}/night * {(rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} nights</span>
+                            <span>${oneSpotRes.price * (rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} </span>
+                        </div>
+                        <div className='price-calculation-row'><span>Cleaning Fee</span><span>$65</span></div>
+                        <div className='price-calculation-row'><span>Service Fee</span><span>$35</span></div>
+                        <div className='price-calculation-row price-calculation-total'><span>Total:</span><span>${100 + oneSpotRes.price * (rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)}</span></div>
 
-            </div>
-            }
+                    </div>
+                    }
+                </div>)
+                : <div>Can't book a spot you own!</div>}
         </div>
     )
 }
