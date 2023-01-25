@@ -51,7 +51,9 @@ export const deleteBooking = (bookingId) => async (dispatch) => {
         method: 'DELETE'
     })
     if(response.ok) {
+        const deleted = await response.json()
         dispatch(delBooking(bookingId))
+        return deleted
     }
 }
 

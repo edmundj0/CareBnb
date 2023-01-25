@@ -11,6 +11,8 @@ import UserEditSpot from "./components/UserEditSpot";
 import UserNewSpot from "./components/UserNewSpot";
 import UserManageReviews from "./components/UserManageReviews";
 import UserManageBookings from "./components/UserManageBookings/UserManageBookings";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   return (
     <>
     {/* <h1>Hello from App</h1> */}
+      <ToastContainer position="top-right"/>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>

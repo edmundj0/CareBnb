@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { deleteBooking, getUserBookings } from "../../store/booking";
+import { toast } from 'react-toastify';
 import './UserManageBookings.css'
 
 export default function UserManageBookings() {
@@ -21,17 +22,36 @@ export default function UserManageBookings() {
     const userBookingsFuture = userBookingsArrUnsorted.filter(booking => new Date().toISOString().split('T')[0] < booking.startDate)
     const userBookingsPast = userBookingsArrUnsorted.filter(booking => new Date().toISOString().split('T')[0] >= booking.startDate) //consider booking that starts today as past
 
-    userBookingsFuture.sort((a,b) => a.startDate < b.startDate ? -1 : 1)
-    userBookingsPast.sort((a,b) => a.startDate > b.startDate ? -1: 1)
+    userBookingsFuture.sort((a, b) => a.startDate < b.startDate ? -1 : 1)
+    userBookingsPast.sort((a, b) => a.startDate > b.startDate ? -1 : 1)
     // console.log(userBookingsFuture, 'future')
     // console.log(userBookingsPast, 'past')
     // console.log(userBookingsArrUnsorted)
 
 
-    const userBookingsArr = userBookingsArrUnsorted.sort(function (a, b) {
-        let x = a.startDate < b.startDate ? -1 : 1;
-        return x
-    })
+    // const userBookingsArr = userBookingsArrUnsorted.sort(function (a, b) {
+    //     let x = a.startDate < b.startDate ? -1 : 1;
+    //     return x
+    // })
+
+    const handleDelete = (booking) => {
+        dispatch(deleteBooking(booking.id)).then((res) => {
+            if (res.statusCode === 200) {
+                toast.success("Booking deleted successfully", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light"
+                })
+            } else {
+                toast.error("Error deleting. Please try again later.")
+            }
+        })
+    }
 
     return (isLoaded && (
         <div>
@@ -52,12 +72,12 @@ export default function UserManageBookings() {
                                     <img src={booking.Spot.previewImg} alt='spot' className="each-booking-img"></img>
                                 </div>
                             </NavLink>
-                            {new Date().toISOString().split('T')[0] < booking.startDate ? <button className="delete-booking-button" onClick={() => dispatch(deleteBooking(booking.id))}><i className="fa-solid fa-trash-can"></i></button> : null}
+                            {new Date().toISOString().split('T')[0] < booking.startDate ? <button className="delete-booking-button" onClick={() => handleDelete(booking)}><i className="fa-solid fa-trash-can"></i></button> : null}
                             {/* only show delete button if trip is in the future */}
                         </div>
                     )
                 })) : <div>No bookings yet</div>}
-                <h4>Past Bookings</h4>
+                <h4>Past and Ongoing Bookings</h4>
                 {userBookingsPast.length > 0 ? (userBookingsPast.map(booking => {
                     return (
                         <div className="each-booking-include-nav-container" key={`booking ${booking.id}`}>
