@@ -17,7 +17,7 @@ export default function Bookings({ spotId }) {
     const [rangesEnd, setRangesEnd] = useState(new Date())
     const calendarContainer = useRef(null)
 
-    useEffect(() => {
+    useEffect(() => { //close calendar modal if user clicks outside the ref
 
         if (!showCalendar) return
 
@@ -35,6 +35,7 @@ export default function Bookings({ spotId }) {
 
 
     }, [showCalendar, calendarContainer.current])
+    
 
     //required props for react-date-range
     const selectionRange = {
