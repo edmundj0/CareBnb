@@ -10,6 +10,9 @@ import UserManageSpots from "./components/UserManageSpots";
 import UserEditSpot from "./components/UserEditSpot";
 import UserNewSpot from "./components/UserNewSpot";
 import UserManageReviews from "./components/UserManageReviews";
+import UserManageBookings from "./components/UserManageBookings/UserManageBookings";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -22,6 +25,7 @@ function App() {
   return (
     <>
     {/* <h1>Hello from App</h1> */}
+      <ToastContainer position="top-right"/>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -42,6 +46,9 @@ function App() {
           </Route>
           <Route exact path= "/about-me/reviews">
             <UserManageReviews />
+          </Route>
+          <Route exact path="/about-me/bookings">
+            <UserManageBookings />
           </Route>
           <Route>
             <h1>404 Not Found</h1>

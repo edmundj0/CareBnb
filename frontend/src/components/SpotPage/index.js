@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import { getAllSpots, getOneSpot } from "../../store/spots";
 import SpotReviews from "../SpotReviews";
 import UserNewReviewModal from "../UserNewReviewModal";
+import Bookings from "./Bookings/Bookings";
 import './SpotPage.css'
 
 export default function SpotPage() {
@@ -128,8 +129,8 @@ export default function SpotPage() {
                         </div>
                     </div>
 
-                    <div className="feature-coming-soon">
-                        Booking Feature Below Coming Soon!
+                    <div className="booking-section">
+                        <Bookings spotId={spotId} oneSpotRes={oneSpotRes} />
                     </div>
                 </div>
 
