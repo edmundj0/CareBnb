@@ -159,7 +159,7 @@ export default function Bookings({ spotId, oneSpotRes }) {
                     </form>
                     {startDate && <div className='price-calculation-container'>
                         <div className='price-calculation-row'>
-                            <span>${oneSpotRes.price}/night * {(rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} nights</span>
+                            <span>${oneSpotRes.price}/night * {Math.round((rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24))} nights</span>
                             <span>${oneSpotRes.price * (rangesEnd.getTime() - rangesStart.getTime()) / (1000 * 3600 * 24)} </span>
                         </div>
                         <div className='price-calculation-row'><span>Cleaning Fee</span><span>$65</span></div>
