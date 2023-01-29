@@ -171,10 +171,9 @@
     color: gray;
 }
 
-.feature-coming-soon {
+.booking-section {
     text-align: center;
-    font-style: italic;
-    color: #333;
+    /* color: #333; */
     margin-top: 50px;
 }
 
