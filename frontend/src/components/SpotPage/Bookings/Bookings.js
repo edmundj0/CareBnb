@@ -106,7 +106,7 @@ export default function Bookings({ spotId, oneSpotRes }) {
 
     return (
         <div>
-            {oneSpotRes?.Owner?.id !== currentUser.id ?
+            {oneSpotRes?.Owner?.id !== currentUser?.id ?
                 (<div className='booking-entire-container'>
                     <h4>Make a Reservation</h4>
                     <div>
