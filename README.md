@@ -99,20 +99,26 @@ Live Link: https://care-bnb-app.herokuapp.com/
 
 ### Built With
 
-<!-- * [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url] -->
-- Node.js
-- React
-- Redux
-- CSS
-- FontAwesome
+Languages
+* [![JavaScript][JavaScript]][JavaScript-url]
+* [![HTML5][HTML]][HTML-url]
+* [![CSS3][CSS]][CSS-url]
 
+Frontend
+* [![React][React.js]][React-url]
+* [![Redux][Redux]][Redux-url]
+
+Backend
+* [![Node][Node.js]][Nodejs-url]
+* [![Express.js][Express.js]][Expressjs-url]
+* [![Sequelize][Sequelize]][Sequelize-url]
+
+Database
+* [![PostgreSQL][PostgreSQL]][PostgreSQL-url] (Production)
+* [![SQLite][SQLite]][SQLite-url] (Development)
+
+
+<!--
 <h3>Languages</h3>
 - CSS
 - HTML
@@ -128,6 +134,7 @@ Live Link: https://care-bnb-app.herokuapp.com/
 - SQLite
 - Sequelize
 - PostgreSQL
+-->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -298,3 +305,21 @@ Project Link: [https://github.com/edmundj0/API-Project](https://github.com/edmun
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com
+[Nodejs-url]: https://nodejs.org/en
+[Node.js]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
+[Express.js]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
+[Expressjs-url]: https://expressjs.com/
+[Redux]: https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white
+[Redux-url]: https://redux.js.org/
+[JavaScript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[JavaScript-url]: https://www.javascript.com/
+[CSS]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]: https://www.w3.org/Style/CSS/Overview.en.html
+[HTML]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[Sequelize]: https://img.shields.io/badge/Sequelize-%23D42027.svg?style=for-the-badge&logo=sequelize&logoColor=white
+[Sequelize-url]: https://sequelize.org/
+[SQLite]: https://img.shields.io/badge/SQLite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
+[SQLite-url]: https://sqlite.org/index.html
+[PostgreSQL]: https://img.shields.io/badge/PostgreSQL-%232E3440.svg?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
