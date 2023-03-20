@@ -58,9 +58,6 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -71,7 +68,7 @@
     </li>
     <li><a href="#features">Features</a></li>
     <!-- <li><a href="#usage">Usage</a></li> -->
-    <li><a href="#roadmap">Roadmap</a></li>
+    <!-- <li><a href="#roadmap">Roadmap</a></li> -->
     <!-- <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li> -->
     <li><a href="#contact">Contact</a></li>
@@ -88,9 +85,17 @@
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
 
-Welcome to CareBnb! This web application is a fullstack project that attempts to clone Airbnb through a nature theme. Please enjoy navigating around the site! There are options to sign up a new user or login as a demo user through the login option. Logged-in users may host new spots, edit their existing spots, check out other available spots, and delete their own spot. They may also leave reviews on other spots!
+Welcome to CareBnb! This web application is a full-stack, nature themed clone of AirBnb. Please enjoy navigating around the site! 
 
-Live Link: https://care-bnb-app.herokuapp.com/
+To experiment with all features, either sign up as a new user, or navigate to the "Login" section in the upper-right, and select "Login as Demo User".
+
+Logged-in users may host new spots, edit their existing spots, delete their existing spots, and check out other user's spots. Logged-in users may also leave reviews on other spots, as well as make bookings to other user's spots.
+
+
+LIVE LINK: https://care-bnb-app.herokuapp.com/
+
+![care_bnb_homepage](https://user-images.githubusercontent.com/102005831/226246814-713d84aa-2381-4854-90fd-aca10deb5f26.jpg)
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -147,7 +152,7 @@ Database
 ```
 https://github.com/edmundj0/API-Project.git
 ```
-2. Install dependencies in both frontend and backend:
+2. Install dependencies in both frontend and backend directories:
 ```
 npm install
 ```
@@ -164,13 +169,25 @@ npm start
 
 ## Features
 
-- Sign Up and Login Users
-- Create, read, update, and delete Spots
-- Create, read, and delete Reviews
+<ul>
+  <li>Sign Up and Login Users</li>
+  <li>Create, read, update, and delete Spots</li>
+  <li>Create, read, and delete Reviews</li>
+  <li>Search feature to find particular Spots</li>
+  <li>Create and delete upcoming Bookings</li>
+  <li>View all past and ongoing Bookings</li>
+</ul>
 
 
-## Demo Image
+## Demo Images
+
+
+### Making a Booking
+![carebnb-make-booking](https://user-images.githubusercontent.com/102005831/226249197-9e800064-90c0-4809-9223-857f045efb60.gif)
+
+### Homepage
 ![CareBnb Home Page](https://raw.githubusercontent.com/edmundj0/Care-bnb-images/main/demo-image.jpg)
+
 
 <!-- ### Prerequisites
 
@@ -211,7 +228,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 
-<!-- ROADMAP -->
+<!-- ROADMAP
 ## Roadmap
 
 - [ ] Add ability to edit reviews
@@ -222,7 +239,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 See the [open issues](https://github.com/edmundj0/API-Project/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+ -->
 
 
 <!-- CONTRIBUTING
