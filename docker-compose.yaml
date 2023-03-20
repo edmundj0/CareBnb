@@ -1,0 +1,24 @@
+version: '3'
+services:
+  care-bnb:
+    build: .
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+    volumes:
+      - data:/app/data
+
+
+volumes:
+  data:
+
+
+# TODO run backend and frontend in separate containers to not violate separation of concerns for scalability
+
+# frontend:
+#   build: ./frontend
+#   ports:
+#     - "3000:3000"
+#   volumes:
+#     - ./frontend:/app
+#   command: npm run start
