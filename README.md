@@ -148,6 +148,14 @@ Database
 <!-- GETTING STARTED -->
 ## Getting Started (locally)
 
+Clone the repo and run locally using docker compose
+```
+git clone https://github.com/edmundj0/CareBnb.git && cd CareBnb
+docker-compose up
+```
+
+---------- OR (if docker not installed) ----------
+
 1. Clone the repository or download zip:
 ```
 git clone https://github.com/edmundj0/CareBnb.git
