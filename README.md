@@ -146,25 +146,34 @@ Database
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started (locally)
 
-1. Clone my repository or download zip:
+1. Clone the repository or download zip:
 ```
-https://github.com/edmundj0/API-Project.git
+git clone https://github.com/edmundj0/CareBnb.git
 ```
 2. Install dependencies in both frontend and backend directories:
 ```
-npm install
+cd frontend && npm install && cd ../backend && npm install
 ```
 
-3. Migrate and seed database:
+3. In the backend folder, create .env file and add variables
+```
+touch .env && \
+echo "PORT=8000" >> .env && \
+echo "DB_FILE=db/dev.db" >> .env && \
+echo "JWT_SECRET=placeholder" >> .env && \
+echo "JWT_EXPIRES_IN=604800" >> .env
+```
+
+4. In the backend folder, migrate and seed database:
 ```
 npm run db:reset
 ```
 
-4. Start both frontend and backend servers:
+4. Start both backend and frontend servers:
 ```
-npm start
+npm start && cd ../frontend && npm start
 ```
 
 ## Features
